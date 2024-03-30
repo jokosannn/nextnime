@@ -1,13 +1,11 @@
-import Loading from '@/components/atom/loading'
 import Populer from '@/components/fragments/Populer'
-import { Suspense } from 'react'
+import Recomendation from '@/components/fragments/Recomendation'
 
 export default function Home() {
   return (
     <section>
-      <Suspense fallback={<Loading />}>
-        <Populer />
-      </Suspense>
+      <Populer />
+      <Recomendation />
     </section>
   )
 }

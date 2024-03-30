@@ -14,10 +14,14 @@ const CardAnime = ({ data }: any) => {
           className="object-cover w-full h-full hover:scale-105 transition-all duration-400"
           priority
         />
-        <div className="w-10 h-10 rounded-full overflow-hidden absolute top-2 right-2 bg-white">
-          <Rating rating={data.score.toFixed(1)} />
-        </div>
-        <p className="absolute bottom-1 left-2 text-white text-sm">{data.episodes} Episode</p>
+        {data.score && (
+          <div className="w-10 h-10 rounded-full overflow-hidden absolute top-2 right-2 bg-white">
+            <Rating rating={data.score.toFixed(1)} />
+          </div>
+        )}
+        {data.episodes && (
+          <p className="absolute bottom-1 left-2 text-white text-sm">{data.episodes} Episode</p>
+        )}
       </div>
       <h1 className="line-clamp-2 text-sm mt-1">{data.title}</h1>
     </div>
