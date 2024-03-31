@@ -9,14 +9,16 @@ const Switch = ({ dataSwitch, onTabChange }: { dataSwitch: string[]; onTabChange
   }
 
   return (
-    <div className="w-44 h-10 px-[2.5px] bg-slate-200 flex items-center justify-between rounded-full overflow-hidden">
+    <div className="w-40 h-10 px-[2.5px] bg-gray-200 flex items-center justify-between rounded-full overflow-hidden shadow-sm">
       {dataSwitch.map((item, index) => (
         <div
           key={index}
-          className={`switch ${swap === index ? 'bg-white' : ''} transition-all duration-400`}
+          className={`switch ${swap === index ? 'bg-primary' : ''} transition-all duration-400`}
           onClick={() => handleSwap(item, index)}
         >
-          <span className="text-sm">{item}</span>
+          <span className={`text-sm ${swap === index ? 'text-white' : 'text-black-gray'}`}>
+            {item}
+          </span>
         </div>
       ))}
     </div>

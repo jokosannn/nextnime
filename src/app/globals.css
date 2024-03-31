@@ -39,7 +39,7 @@ body {
     place-items: center;
   }
   .primary {
-    @apply bg-indigo-500 px-4 h-10 text-white rounded-md;
+    @apply bg-primary px-4 h-10 text-white rounded-md;
   }
   .secondary {
     @apply bg-black-gray px-4 h-10 text-white rounded-md;

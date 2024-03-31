@@ -16,7 +16,7 @@ const SearchPage = ({ params }: { params: { query: string } }) => {
     <section className="wrapper">
       <div>
         <div className="flex justify-between items-center mb-4">
-          <h1 className="text-lg font-semibold">
+          <h1 className="text-lg text-black-gray font-semibold">
             {`search ${data?.data?.length > 1 ? 'results' : 'result'} of '${decodedQuery}'`}
           </h1>
         </div>

@@ -50,7 +50,7 @@ const Navbar = () => {
       <nav className="border-gray-200 w-full">
         <div className="wrapper flex flex-wrap items-center justify-between">
           <Link href="/" className="flex">
-            <span className="self-center text-2xl font-semibold whitespace-nowrap bg-clip-text text-transparent bg-gradient-to-r from-[#38bdf8] to-blue-600 ">
+            <span className="self-center text-2xl font-semibold whitespace-nowrap bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-400 ">
               NextNime
             </span>
           </Link>
@@ -66,7 +66,7 @@ const Navbar = () => {
               isNavActive ? 'top-16' : '-top-20'
             } gap-2 items-center justify-center md:order-2 transition-all`}
           >
-            <select className="sm:block bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-24 p-2.5">
+            <select className="sm:block bg-gray-50 border border-gray-300 text-black-gray text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-24 p-2.5">
               <option value="anime">anime</option>
               <option value="manga">manga</option>
             </select>
@@ -90,7 +90,7 @@ const Navbar = () => {
                 id="email-adress-icon"
                 value={query}
                 ref={inputRef}
-                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 placeholder:text-gray-600 block w-full pl-10 p-2"
+                className="bg-gray-50 border border-gray-300 text-black-gray sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 placeholder:text-gray-light block w-full pl-10 p-2"
                 placeholder="Search..."
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
               />

@@ -8,7 +8,7 @@ export default function Home() {
         Welcome to your anime and manga haven! Explore endless stories, inspiring characters, and a
         vibrant community.
       </h1>
-      <p className="text-sm md:text-base mt-4 w-2/3 text-center font-medium text-gray-500">
+      <p className="text-sm md:text-base mt-4 w-2/3 text-center font-medium text-gray-light">
         Dive into our extensive collection and embark on unforgettable adventures in the exciting
         world of anime and manga!
       </p>
