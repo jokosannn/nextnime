@@ -1,6 +1,8 @@
-export const fetchDataApi = async (url: string) => {
+export const getAnimeResponse = async (url: string, query: string) => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${url}`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${url}${query}`, {
+      cache: 'no-store',
+    })
     const response = await res.json()
     return response
   } catch (error) {
@@ -8,16 +10,16 @@ export const fetchDataApi = async (url: string) => {
   }
 }
 
-export const getRecomendationsAnime = async (url: string, entry: string) => {
-  const res = await fetchDataApi(url)
-  return res.data.flatMap((item: any) => item[entry])
+export const getNestedAnimeResponse = async (url: string, objectProperty: string) => {
+  const res = await getAnimeResponse(url, '')
+  return res?.data?.flatMap((item: any) => item[objectProperty])
 }
 
-export const reproduce = (data: any, gap: number) => {
-  const first = ~~(Math.random() * (data.length - gap) + 1)
+export const reproduce = (data: Array<object>, gap: number) => {
+  const first = ~~(Math.random() * (data?.length - gap) + 1)
   const last = first + gap
 
-  const response = data.slice(first, last)
+  const response = data?.slice(first, last)
 
   return response
 }

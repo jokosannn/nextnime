@@ -1,10 +1,10 @@
 import React from 'react'
 import CardAnime from '../CardAnime'
-import { getRecomendationsAnime, reproduce } from '@/utils/api'
+import { getNestedAnimeResponse, reproduce } from '@/utils/api'
 
 const Recomendation = async () => {
-  let data: any = await getRecomendationsAnime('/recommendations/anime', 'entry')
-  data = reproduce(data, 8)
+  let data: any = await getNestedAnimeResponse('/recommendations/anime', 'entry')
+  data = reproduce(data, 7)
 
   return (
     <div className="mb-8">

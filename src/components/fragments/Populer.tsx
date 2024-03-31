@@ -1,12 +1,16 @@
 'use client'
 import React, { useState } from 'react'
-import Switch from '../atom/Switch'
+import Switch from '../Atom/Switch'
 import CardAnime from '../CardAnime'
 import useFetch from '@/hooks/useFetch'
+import LoadingCard from '../Loading/LoadingCard'
 
 const Populer = () => {
   const [endPoint, setEndPoint] = useState('movie')
-  const data: any = useFetch(`/top/anime?limit=20&type=${endPoint}`)
+  const { data, loading }: { data: any; loading: boolean } = useFetch(
+    '/top/anime',
+    `?limit=14&type=${endPoint}`
+  )
 
   const onTabChange = (item: string) => {
     setEndPoint(item === 'Movie' ? 'movie' : 'tv')
@@ -18,11 +22,15 @@ const Populer = () => {
         <h1 className="text-xl font-bold">Paling Populer</h1>
         <Switch dataSwitch={['Movie', 'Tv Series']} onTabChange={onTabChange} />
       </div>
-      <div className="grid-card">
-        {data?.data?.map((item: any, index: number) => (
-          <CardAnime key={index} data={item} />
-        ))}
-      </div>
+      {loading ? (
+        <LoadingCard />
+      ) : (
+        <div className="grid-card">
+          {data?.data?.map((item: any, index: number) => (
+            <CardAnime key={index} data={item} />
+          ))}
+        </div>
+      )}
     </div>
   )
 }

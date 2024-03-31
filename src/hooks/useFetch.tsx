@@ -1,22 +1,26 @@
 'use client'
-import { fetchDataApi } from '@/utils/api'
-import React, { useEffect, useState } from 'react'
+import { getAnimeResponse } from '@/utils/api'
+import { useEffect, useState } from 'react'
 
-const useFetch = (url: string) => {
+const useFetch = (url: string, query: string) => {
   const [data, setData] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     setData(null)
-    fetchDataApi(url)
+    setLoading(true)
+    getAnimeResponse(url, query)
       .then((res: any) => {
+        setLoading(false)
         setData(res)
       })
       .catch((error) => {
+        setLoading(false)
         console.log(error)
       })
-  }, [url])
+  }, [url, query])
 
-  return data
+  return { data, loading }
 }
 
 export default useFetch

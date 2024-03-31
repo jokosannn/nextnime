@@ -17,6 +17,12 @@ body {
 }
 
 @layer components {
+  .wrapper {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding-inline: 1rem;
+  }
   .grid-card {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
@@ -32,8 +38,18 @@ body {
     display: grid;
     place-items: center;
   }
+  .primary {
+    @apply bg-indigo-500 px-4 h-10 text-white rounded-md;
+  }
+  .secondary {
+    @apply bg-black-gray px-4 h-10 text-white rounded-md;
+  }
 }
 
 section {
-  @apply px-6 pt-20;
+  @apply pt-20;
+}
+
+#sortbox:checked ~ #sortboxmenu {
+  opacity: 1;
 }

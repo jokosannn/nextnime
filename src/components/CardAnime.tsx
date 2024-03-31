@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import Rating from './atom/Rating'
+import Rating from './Atom/Rating'
 
 const CardAnime = ({ data }: any) => {
   return (
@@ -20,7 +20,9 @@ const CardAnime = ({ data }: any) => {
           </div>
         )}
         {data.episodes && (
-          <p className="absolute bottom-1 left-2 text-white text-sm">{data.episodes} Episode</p>
+          <p className="absolute bottom-1 left-2 text-white text-xs bg-blue-500 px-2 py-1 rounded-sm">
+            {data.episodes} Episode
+          </p>
         )}
       </div>
       <h1 className="line-clamp-2 text-sm mt-1">{data.title}</h1>
