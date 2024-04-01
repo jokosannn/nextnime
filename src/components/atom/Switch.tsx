@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 const Switch = ({ dataSwitch, onTabChange }: { dataSwitch: string[]; onTabChange: Function }) => {
   const [swap, setSwap] = useState(0)

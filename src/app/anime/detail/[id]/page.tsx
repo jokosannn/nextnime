@@ -1,5 +1,4 @@
 import DetailAnime from '@/components/Anime/DetailAnime'
-import React from 'react'
 
 const DetailPage = ({ params }: { params: { id: string } }) => {
   return (

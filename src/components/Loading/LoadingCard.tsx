@@ -1,5 +1,3 @@
-import React from 'react'
-
 const LoadingCard = () => {
   return <h1 className="text-red-500">Loading...</h1>
 }

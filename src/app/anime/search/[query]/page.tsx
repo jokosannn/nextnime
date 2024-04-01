@@ -2,15 +2,11 @@
 import CardAnime from '@/components/CardAnime'
 import LoadingCard from '@/components/Loading/LoadingCard'
 import useFetch from '@/hooks/useFetch'
-import React from 'react'
 
 const SearchPage = ({ params }: { params: { query: string } }) => {
   const { query } = params
   const decodedQuery = decodeURI(query)
-  const { data, loading }: { data: any; loading: boolean } = useFetch(
-    '/anime',
-    `?q=${decodedQuery}`
-  )
+  const { data, loading }: { data: any; loading: boolean } = useFetch(`/anime?q=${decodedQuery}`)
 
   return (
     <section className="wrapper">

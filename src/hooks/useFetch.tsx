@@ -2,14 +2,14 @@
 import { getAnimeResponse } from '@/utils/api'
 import { useEffect, useState } from 'react'
 
-const useFetch = (url: string, query: string) => {
+const useFetch = (url: string) => {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     setData(null)
     setLoading(true)
-    getAnimeResponse(url, query)
+    getAnimeResponse(url)
       .then((res: any) => {
         setLoading(false)
         setData(res)
@@ -18,7 +18,7 @@ const useFetch = (url: string, query: string) => {
         setLoading(false)
         console.log(error)
       })
-  }, [url, query])
+  }, [url])
 
   return { data, loading }
 }

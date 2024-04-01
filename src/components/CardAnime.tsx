@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import React from 'react'
 import Rating from './Atom/Rating'
 import Link from 'next/link'
 

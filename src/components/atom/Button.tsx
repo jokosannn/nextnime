@@ -1,7 +1,5 @@
-import React from 'react'
-
 type ButtonProps = {
-  variant: 'primary' | 'secondary'
+  variant: 'primary' | 'secondary' | 'third'
   children: React.ReactNode
 } & Omit<React.ComponentProps<'button'>, 'children'>
 

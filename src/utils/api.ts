@@ -1,6 +1,8 @@
-export const getAnimeResponse = async (url: string, query: string) => {
+export const getAnimeResponse = async (url: string) => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${url}${query}`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${url}`, {
+      cache: 'no-store',
+    })
     const response = await res.json()
     return response
   } catch (error) {
@@ -9,7 +11,7 @@ export const getAnimeResponse = async (url: string, query: string) => {
 }
 
 export const getNestedAnimeResponse = async (url: string, objectProperty: string) => {
-  const res = await getAnimeResponse(url, '')
+  const res = await getAnimeResponse(url)
   return res?.data?.flatMap((item: any) => item[objectProperty])
 }
 

@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { FaYoutube } from 'react-icons/fa'
 import YouTube from 'react-youtube'
 
@@ -35,7 +35,7 @@ const VidioPlayer = ({ YoutubeId }: { YoutubeId: string }) => {
     return (
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="fixed bottom-8 right-4 bg-red-secondary px-2 py-1 rounded-sm text-white flex items-center"
+        className="fixed bottom-8 right-4 bg-red-secondary px-3 py-2 rounded-sm text-white flex items-center"
       >
         Tonton Trailer
         <span>

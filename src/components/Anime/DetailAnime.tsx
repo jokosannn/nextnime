@@ -1,18 +1,17 @@
 'use client'
 import useFetch from '@/hooks/useFetch'
 import Image from 'next/image'
-import React from 'react'
 import Rating from '../Atom/Rating'
 import VidioPlayer from './VidioPlayer'
+import Button from '../Atom/Button'
+import Link from 'next/link'
 
 const DetailAnime = ({ id }: { id: string }) => {
-  const { data, loading }: any = useFetch(`/anime/${id}/full`, '')
+  const { data, loading }: any = useFetch(`/anime/${id}/full`)
   const result = data?.data
 
-  console.log(result)
-
   return (
-    <div className="mb-8">
+    <div className="mb-20">
       {loading ? (
         <p className="text-red-500">Loading...</p>
       ) : (
@@ -52,7 +51,7 @@ const DetailAnime = ({ id }: { id: string }) => {
                   ))}
                 </div>
               )}
-              <div className="flex items-center gap-2 mb-2">
+              <div className="flex items-center gap-2 mb-1">
                 <p className="text-xs bg-red-secondary px-2 py-1 rounded-md text-white w-fit h-fit">
                   Rank #{result?.rank}
                 </p>
@@ -85,6 +84,20 @@ const DetailAnime = ({ id }: { id: string }) => {
           <div className="w-full mt-4">
             <p className="font-semibold mb-1">Overview :</p>
             <p className="">{result?.synopsis ? result.synopsis : '-'}</p>
+          </div>
+          <p className="font-semibold mb-2 mt-1">Streaming :</p>
+          <div className="text-sm flex flex-wrap gap-1">
+            {result?.streaming.map((item: any, index: number) => (
+              <Button variant={`${index % 2 === 0 ? 'primary' : 'third'}`} key={index}>
+                <Link
+                  target="_blank"
+                  href={item.url}
+                  className="w-full h-full flex justify-center items-center"
+                >
+                  {item.name}
+                </Link>
+              </Button>
+            ))}
           </div>
         </>
       )}

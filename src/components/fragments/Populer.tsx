@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Switch from '../Atom/Switch'
 import CardAnime from '../CardAnime'
 import useFetch from '@/hooks/useFetch'
@@ -8,8 +8,7 @@ import LoadingCard from '../Loading/LoadingCard'
 const Populer = () => {
   const [endPoint, setEndPoint] = useState('movie')
   const { data, loading }: { data: any; loading: boolean } = useFetch(
-    '/top/anime',
-    `?limit=14&type=${endPoint}`
+    `/top/anime?limit=14&type=${endPoint}`
   )
 
   const onTabChange = (item: string) => {
