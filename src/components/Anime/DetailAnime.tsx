@@ -3,19 +3,22 @@ import useFetch from '@/hooks/useFetch'
 import Image from 'next/image'
 import React from 'react'
 import Rating from '../Atom/Rating'
+import VidioPlayer from './VidioPlayer'
 
 const DetailAnime = ({ id }: { id: string }) => {
   const { data, loading }: any = useFetch(`/anime/${id}/full`, '')
   const result = data?.data
 
+  console.log(result)
+
   return (
-    <div className="mb-16">
+    <div className="mb-8">
       {loading ? (
         <p className="text-red-500">Loading...</p>
       ) : (
         <>
           <div className="w-full flex flex-col sm:flex-row gap-4">
-            <div className="w-full h-auto sm:w-[300px] sm:h-[450px] rounded-md overflow-hidden">
+            <div className="w-full h-auto sm:w-[300px] rounded-md overflow-hidden">
               {result?.images?.webp.image_url && (
                 <Image
                   src={result?.images?.webp.image_url}
@@ -23,7 +26,7 @@ const DetailAnime = ({ id }: { id: string }) => {
                   height={100}
                   alt={result?.title}
                   priority
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover bg-center"
                 />
               )}
             </div>
@@ -38,7 +41,7 @@ const DetailAnime = ({ id }: { id: string }) => {
                 ''
               )}
               {result?.genres && (
-                <div className="flex flex-wrap gap-x-2 gap-y-0 py-2">
+                <div className="flex flex-wrap gap-x-2 gap-y-0">
                   {result?.genres.map((item: any) => (
                     <p
                       key={item.mal_id}
@@ -85,6 +88,7 @@ const DetailAnime = ({ id }: { id: string }) => {
           </div>
         </>
       )}
+      <VidioPlayer YoutubeId={result?.trailer?.youtube_id} />
     </div>
   )
 }
