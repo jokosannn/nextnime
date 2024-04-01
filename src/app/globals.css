@@ -44,6 +44,9 @@ body {
   .secondary {
     @apply bg-black-gray px-4 h-10 text-white rounded-md;
   }
+  .list-detail {
+    @apply py-[7px] border-b border-b-gray-light/30;
+  }
 }
 
 section {
