@@ -1,5 +1,11 @@
-const MangaPage = () => {
-  return <section className="wrapper">MangaPage</section>
-}
+import PopulerManga from '@/components/Fragments/PopulerManga'
+import RecomendationManga from '@/components/Fragments/RecomendationManga'
 
-export default MangaPage
+export default function MangaPage() {
+  return (
+    <section className="wrapper">
+      <PopulerManga />
+      <RecomendationManga />
+    </section>
+  )
+}

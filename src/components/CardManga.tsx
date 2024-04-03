@@ -3,11 +3,11 @@ import Rating from './Atom/Rating'
 import Link from 'next/link'
 import { img } from '@/utils/img'
 
-const CardAnime = ({ data }: { data: any }) => {
+const CardManga = ({ data }: { data: any }) => {
   return (
     <div className="w-full h-full">
       <div className="relative w-full aspect-[1/1.5] overflow-hidden rounded-md cursor-pointer">
-        <Link href={`/anime/detail/${data?.mal_id}`}>
+        <Link href={`/manga/detail/${data?.mal_id}`}>
           <Image
             src={data?.images?.webp?.image_url ? data?.images?.webp?.image_url : img.Poster}
             width={500}
@@ -22,10 +22,18 @@ const CardAnime = ({ data }: { data: any }) => {
             <Rating rating={data?.score.toFixed(1)} />
           </div>
         )}
-        {data?.episodes && (
+        {data?.chapters ? (
           <p className="absolute bottom-1 left-2 text-white text-xs bg-primary px-2 py-1 rounded-sm">
-            {data?.episodes} Episode
+            {data?.chapters} Chapters
           </p>
+        ) : (
+          <>
+            {data?.chapters === null ? (
+              <p className="absolute bottom-1 left-2 text-white text-xs bg-primary px-2 py-1 rounded-sm">
+                Ongoing Chapters
+              </p>
+            ) : null}
+          </>
         )}
       </div>
       <h1 className="line-clamp-2 text-sm text-black-gray mt-1">{data?.title}</h1>
@@ -33,4 +41,4 @@ const CardAnime = ({ data }: { data: any }) => {
   )
 }
 
-export default CardAnime
+export default CardManga

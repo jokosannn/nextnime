@@ -2,14 +2,15 @@
 import useFetch from '@/hooks/useFetch'
 import Image from 'next/image'
 import Rating from '../Atom/Rating'
-import VidioPlayer from './VidioPlayer'
 import Button from '../Atom/Button'
 import Link from 'next/link'
 import { img } from '@/utils/img'
 
-const DetailAnime = ({ id }: { id: string }) => {
-  const { data, loading }: any = useFetch(`/anime/${id}/full`)
+const DetailManga = ({ id }: { id: string }) => {
+  const { data, loading }: any = useFetch(`/manga/${id}/full`)
   const result = data?.data
+
+  console.log(result)
 
   const ImageDetail = () => {
     return (
@@ -62,13 +63,13 @@ const DetailAnime = ({ id }: { id: string }) => {
   const ListStudio = () => {
     return (
       <p className="list-detail">
-        <span className="font-bold">Studio : </span>
-        {result?.studios.length > 0 ? (
+        <span className="font-bold">Authors : </span>
+        {result?.authors.length > 0 ? (
           <>
-            {result?.studios?.map((item: any, i: number) => (
+            {result?.authors?.map((item: any, i: number) => (
               <span key={i}>
                 {item.name}
-                {result?.studios?.length > 1 && ', '}
+                {result?.authors?.length > 1 && ', '}
               </span>
             ))}
           </>
@@ -82,15 +83,15 @@ const DetailAnime = ({ id }: { id: string }) => {
   const ListDetail = ({ title, data, opt = '' }: { title: string; data: any; opt?: string }) => {
     return (
       <p className="list-detail">
-        <span className="font-bold">{title} :</span> {data ? `${data} ${opt}` : '-'}
+        <span className="font-bold">{title} :</span> {data ? `${data} ${opt}` : '?'}
       </p>
     )
   }
 
-  const Streaming = () => {
+  const Serializations = () => {
     return (
       <div className="text-sm flex flex-wrap gap-1 mt-2">
-        {result?.streaming.map((item: any, index: number) => (
+        {result?.serializations.map((item: any, index: number) => (
           <Button variant={`${index % 2 === 0 ? 'primary' : 'third'}`} key={index}>
             <Link
               target="_blank"
@@ -119,11 +120,11 @@ const DetailAnime = ({ id }: { id: string }) => {
               {result?.score ? <RatingDetail /> : null}
               {result?.genres && <Genre />}
               <RankPopularity />
-              <ListDetail title="Total Episodes" data={result?.episodes} opt="episode" />
+              <ListDetail title="Total Chapters" data={result?.chapters} opt="chapters" />
               <ListDetail title="Type" data={result?.type} />
               <ListDetail title="Status" data={result?.status} />
-              <ListDetail title="Aired" data={result?.aired.string} />
-              <ListDetail title="Duration" data={result?.duration} />
+              <ListDetail title="Published" data={result?.published.string} />
+              <ListDetail title="Volumes" data={result?.volumes} />
               <ListStudio />
             </div>
           </div>
@@ -136,18 +137,17 @@ const DetailAnime = ({ id }: { id: string }) => {
             )}
           </div>
           <div className="w-full mt-2">
-            <p className="font-bold">Streaming :</p>
-            {result?.streaming.length > 0 ? (
-              <Streaming />
+            <p className="font-bold">Reading :</p>
+            {result?.serializations.length > 0 ? (
+              <Serializations />
             ) : (
               <span className="text-red-secondary text-sm">Opss Nothing!!</span>
             )}
           </div>
         </>
       )}
-      <VidioPlayer YoutubeId={result?.trailer?.youtube_id} />
     </div>
   )
 }
 
-export default DetailAnime
+export default DetailManga

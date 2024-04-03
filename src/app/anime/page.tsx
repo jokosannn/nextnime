@@ -1,11 +1,11 @@
-import Populer from '@/components/Fragments/Populer'
-import Recomendation from '@/components/Fragments/Recomendation'
+import PopulerAnime from '@/components/Fragments/PopulerAnime'
+import RecomendationAnime from '@/components/Fragments/RecomendationAnime'
 
 export default function AnimePage() {
   return (
     <section className="wrapper">
-      <Populer />
-      <Recomendation />
+      <PopulerAnime />
+      <RecomendationAnime />
     </section>
   )
 }
