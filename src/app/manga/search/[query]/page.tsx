@@ -1,12 +1,11 @@
-'use client'
-import CardManga from '@/components/CardManga'
 import LoadingCard from '@/components/Loading/LoadingCard'
-import useFetch from '@/hooks/useFetch'
-import React from 'react'
+import { getDataResponse } from '@/utils/api'
+import React, { Suspense } from 'react'
+const CardManga = React.lazy(() => import('@/components/CardManga'))
 
-const SarchPageManga = ({ params }: { params: { query: string } }) => {
+const SarchPageManga = async ({ params }: { params: { query: string } }) => {
   const decodedQuery = decodeURI(params.query)
-  const { data, loading }: { data: any; loading: boolean } = useFetch(`/manga?q=${decodedQuery}`)
+  const data = await getDataResponse(`/anime?q=${decodedQuery}`)
 
   return (
     <section className="wrapper">
@@ -16,20 +15,16 @@ const SarchPageManga = ({ params }: { params: { query: string } }) => {
             {`search manga ${data?.data?.length > 1 ? 'results' : 'result'} of '${decodedQuery}'`}
           </h1>
         </div>
-        {loading ? (
-          <LoadingCard />
+        {data?.data?.length > 0 ? (
+          <div className="grid gap-4 grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7">
+            {data?.data?.map((item: any, index: number) => (
+              <Suspense key={index} fallback={<LoadingCard />}>
+                <CardManga data={item} />
+              </Suspense>
+            ))}
+          </div>
         ) : (
-          <>
-            {data?.data?.length > 0 ? (
-              <div className="grid gap-4 grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7">
-                {data?.data?.map((item: any, index: number) => (
-                  <CardManga key={index} data={item} />
-                ))}
-              </div>
-            ) : (
-              <p className="text-red-500">Sorry, Results not found!</p>
-            )}
-          </>
+          <p className="text-red-500">Sorry, Results not found!</p>
         )}
       </div>
     </section>

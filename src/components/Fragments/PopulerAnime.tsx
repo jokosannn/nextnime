@@ -1,10 +1,11 @@
 'use client'
-import { useState } from 'react'
+import React, { Suspense, useState } from 'react'
 import Switch from '../Atom/Switch'
-import CardAnime from '../CardAnime'
 import useFetch from '@/hooks/useFetch'
-import LoadingCard from '../Loading/LoadingCard'
 import Link from 'next/link'
+import LoadingCard from '../Loading/LoadingCard'
+import LoadingSpinner from '../Loading/LoadingSpinner'
+const CardAnime = React.lazy(() => import('../CardAnime'))
 
 const PopulerAnime = () => {
   const [endPoint, setEndPoint] = useState('movie')
@@ -28,11 +29,13 @@ const PopulerAnime = () => {
         <Switch dataSwitch={['Movie', 'Tv Series']} onTabChange={onTabChange} />
       </div>
       {loading ? (
-        <LoadingCard />
+        <LoadingSpinner />
       ) : (
         <div className="grid-card">
           {data?.data?.map((item: any, index: number) => (
-            <CardAnime key={index} data={item} />
+            <Suspense key={index} fallback={<LoadingCard />}>
+              <CardAnime data={item} />
+            </Suspense>
           ))}
         </div>
       )}

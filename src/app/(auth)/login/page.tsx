@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { FaGithub } from 'react-icons/fa6'
+import { FcGoogle } from 'react-icons/fc'
 
 const LoginPage = () => {
   return (
@@ -68,9 +70,30 @@ const LoginPage = () => {
                 Sign in
               </button>
             </div>
+            <div className="flex flex-col gap-3">
+              <p className="text-center">or</p>
+              <div>
+                <button
+                  type="submit"
+                  className="flex w-full justify-center items-center gap-2 rounded-md bg-white px-3 py-1.5 text-sm font-semibold leading-6 border text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                >
+                  <FcGoogle />
+                  Continue with Google
+                </button>
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  className="flex w-full justify-center items-center gap-2 rounded-md bg-black-gray px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-black-gray focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black-gray"
+                >
+                  <FaGithub />
+                  Continue with Github
+                </button>
+              </div>
+            </div>
           </form>
 
-          <p className="mt-10 text-center text-sm text-gray-500">
+          <p className="mt-6 text-center text-sm text-gray-500">
             Dont&apos; Have an account?
             <Link
               href="/register"

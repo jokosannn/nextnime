@@ -1,4 +1,4 @@
-export const getAnimeResponse = async (url: string) => {
+export const getDataResponse = async (url: string) => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${url}`, {
       cache: 'no-store',
@@ -11,7 +11,7 @@ export const getAnimeResponse = async (url: string) => {
 }
 
 export const getNestedDataResponse = async (url: string, objectProperty: string) => {
-  const res = await getAnimeResponse(url)
+  const res = await getDataResponse(url)
   return res?.data?.flatMap((item: any) => item[objectProperty])
 }
 

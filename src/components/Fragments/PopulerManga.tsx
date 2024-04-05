@@ -1,18 +1,17 @@
 'use client'
 import useFetch from '@/hooks/useFetch'
-import { useState } from 'react'
+import React, { Suspense, useState } from 'react'
 import LoadingCard from '../Loading/LoadingCard'
-import CardManga from '../CardManga'
 import Link from 'next/link'
 import Switch from '../Atom/Switch'
+import LoadingSpinner from '../Loading/LoadingSpinner'
+const CardManga = React.lazy(() => import('../CardManga'))
 
 const PopulerManga = () => {
   const [endPoint, setEndPoint] = useState('manga')
   const { data, loading }: { data: any; loading: boolean } = useFetch(
     `/top/manga?limit=14&type=${endPoint}`
   )
-
-  // console.log(data)
 
   const onTabChange = (item: string) => {
     setEndPoint(item === 'Manga' ? 'manga' : 'novel')
@@ -30,11 +29,13 @@ const PopulerManga = () => {
         <Switch dataSwitch={['Manga', 'Novel']} onTabChange={onTabChange} />
       </div>
       {loading ? (
-        <LoadingCard />
+        <LoadingSpinner />
       ) : (
         <div className="grid-card">
           {data?.data?.map((item: any, index: number) => (
-            <CardManga key={index} data={item} />
+            <Suspense key={index} fallback={<LoadingCard />}>
+              <CardManga data={item} />
+            </Suspense>
           ))}
         </div>
       )}

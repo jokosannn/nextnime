@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import CardAnime from '../CardAnime'
 import { getNestedDataResponse, reproduce } from '@/utils/api'
+import { Suspense } from 'react'
+import LoadingCard from '../Loading/LoadingCard'
 
 const RecomendationAnime = async () => {
   const data: any = await getNestedDataResponse('/recommendations/anime', 'entry')
@@ -18,7 +20,9 @@ const RecomendationAnime = async () => {
       </div>
       <div className="grid-card">
         {result?.map((item: object, index: number) => (
-          <CardAnime key={index} data={item} />
+          <Suspense key={index} fallback={<LoadingCard />}>
+            <CardAnime data={item} />
+          </Suspense>
         ))}
       </div>
     </div>

@@ -1,5 +1,5 @@
 'use client'
-import { getAnimeResponse } from '@/utils/api'
+import { getDataResponse } from '@/utils/api'
 import { useEffect, useState } from 'react'
 
 const useFetch = (url: string) => {
@@ -9,7 +9,7 @@ const useFetch = (url: string) => {
   useEffect(() => {
     setData(null)
     setLoading(true)
-    getAnimeResponse(url)
+    getDataResponse(url)
       .then((res: any) => {
         setLoading(false)
         setData(res)

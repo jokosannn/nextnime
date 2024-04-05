@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { RefObject, useEffect, useRef, useState } from 'react'
 import DropdownNavlist from './DropdownNavlist'
 import { TbWorldSearch } from 'react-icons/tb'
 import { ImCross } from 'react-icons/im'
@@ -13,10 +13,9 @@ const Navbar = () => {
   const pathname = usePathname()
   const [isNavInput, setIsNavInput] = useState(false)
   const [isNavScrool, setIsNavScrool] = useState(false)
-  const [isNavList, setIsNavList] = useState(false)
   const [query, setQuery] = useState('')
   const [endPoint, setEndPoint] = useState('anime')
-  const inputRef: any = useRef(null)
+  const inputRef: RefObject<HTMLInputElement> = useRef(null)
   const { push } = useRouter()
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -28,7 +27,7 @@ const Navbar = () => {
     }
     setQuery('')
     setIsNavInput(false)
-    inputRef.current.blur()
+    if (inputRef.current) inputRef.current.blur()
   }
 
   useEffect(() => {
@@ -37,12 +36,9 @@ const Navbar = () => {
       if (scrollY > 0) {
         setIsNavScrool(true)
         setIsNavInput(false)
-        inputRef.current.blur()
+        if (inputRef.current) inputRef.current.blur()
       } else {
         setIsNavScrool(false)
-      }
-      if (scrollY) {
-        setIsNavList(false)
       }
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
@@ -50,8 +46,6 @@ const Navbar = () => {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
-
-  // console.log(endPoint)
 
   return (
     <>
@@ -118,7 +112,7 @@ const Navbar = () => {
                   className="text-[27px] cursor-pointer block sm:hidden"
                   onClick={() => {
                     setIsNavInput(!isNavInput)
-                    inputRef.current.focus()
+                    if (inputRef.current) inputRef.current.focus()
                   }}
                 />
                 <div className="mx-auto">

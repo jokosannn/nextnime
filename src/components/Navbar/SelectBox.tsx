@@ -10,8 +10,8 @@ interface SelectBoxProps {
 }
 
 const people = [
-  { name: 'Anime', value: 'anime' },
-  { name: 'Manga', value: 'manga' },
+  { name: 'anime', value: 'anime' },
+  { name: 'manga', value: 'manga' },
 ]
 
 export default function SelectBox({ endPoint, setEndPoint }: SelectBoxProps) {

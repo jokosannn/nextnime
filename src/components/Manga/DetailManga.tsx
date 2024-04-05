@@ -1,16 +1,15 @@
-'use client'
-import useFetch from '@/hooks/useFetch'
 import Image from 'next/image'
 import Rating from '../Atom/Rating'
 import Button from '../Atom/Button'
 import Link from 'next/link'
 import { img } from '@/utils/img'
+import { getDataResponse } from '@/utils/api'
+import { Suspense } from 'react'
+import LoadingDetail from '../Loading/LoadingDetail'
 
-const DetailManga = ({ id }: { id: string }) => {
-  const { data, loading }: any = useFetch(`/manga/${id}/full`)
-  const result = data?.data
-
-  console.log(result)
+const DetailManga = async ({ id }: { id: string }) => {
+  const data = await getDataResponse(`/manga/${id}/full`)
+  const result = await data?.data
 
   const ImageDetail = () => {
     return (
@@ -108,44 +107,40 @@ const DetailManga = ({ id }: { id: string }) => {
 
   return (
     <div className="mb-20">
-      {loading ? (
-        <p className="text-red-500">Loading...</p>
-      ) : (
-        <>
-          <div className="w-full flex flex-col sm:flex-row gap-4">
-            <ImageDetail />
-            <div className="w-full h-fit sm:w-3/4">
-              <h1 className="text-2xl font-bold">{result?.title}</h1>
-              <p className="text-base text-gray-light mb-2">{result?.title_japanese}</p>
-              {result?.score ? <RatingDetail /> : null}
-              {result?.genres && <Genre />}
-              <RankPopularity />
-              <ListDetail title="Total Chapters" data={result?.chapters} opt="chapters" />
-              <ListDetail title="Type" data={result?.type} />
-              <ListDetail title="Status" data={result?.status} />
-              <ListDetail title="Published" data={result?.published.string} />
-              <ListDetail title="Volumes" data={result?.volumes} />
-              <ListStudio />
-            </div>
+      <Suspense fallback={<LoadingDetail />}>
+        <div className="w-full flex flex-col sm:flex-row gap-4">
+          <ImageDetail />
+          <div className="w-full h-fit sm:w-3/4">
+            <h1 className="text-2xl font-bold">{result?.title}</h1>
+            <p className="text-base text-gray-light mb-2">{result?.title_japanese}</p>
+            {result?.score ? <RatingDetail /> : null}
+            {result?.genres && <Genre />}
+            <RankPopularity />
+            <ListDetail title="Total Chapters" data={result?.chapters} opt="chapters" />
+            <ListDetail title="Type" data={result?.type} />
+            <ListDetail title="Status" data={result?.status} />
+            <ListDetail title="Published" data={result?.published.string} />
+            <ListDetail title="Volumes" data={result?.volumes} />
+            <ListStudio />
           </div>
-          <div className="w-full mt-4">
-            <p className="font-bold">Overview :</p>
-            {result?.synopsis ? (
-              <p className="mt-1">{result?.synopsis}</p>
-            ) : (
-              <span className="text-red-secondary text-sm">Opss Nothing!!</span>
-            )}
-          </div>
-          <div className="w-full mt-2">
-            <p className="font-bold">Reading :</p>
-            {result?.serializations.length > 0 ? (
-              <Serializations />
-            ) : (
-              <span className="text-red-secondary text-sm">Opss Nothing!!</span>
-            )}
-          </div>
-        </>
-      )}
+        </div>
+        <div className="w-full mt-4">
+          <p className="font-bold">Overview :</p>
+          {result?.synopsis ? (
+            <p className="mt-1">{result?.synopsis}</p>
+          ) : (
+            <span className="text-red-secondary text-sm">Opss Nothing!!</span>
+          )}
+        </div>
+        <div className="w-full mt-2">
+          <p className="font-bold">Reading :</p>
+          {result?.serializations.length > 0 ? (
+            <Serializations />
+          ) : (
+            <span className="text-red-secondary text-sm">Opss Nothing!!</span>
+          )}
+        </div>
+      </Suspense>
     </div>
   )
 }
