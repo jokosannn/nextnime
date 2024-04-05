@@ -2,7 +2,7 @@
 import { getDataResponse } from '@/utils/api'
 import { useEffect, useState } from 'react'
 
-const useFetch = (url: string) => {
+export default function useFetch(url: string) {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(false)
 
@@ -22,5 +22,3 @@ const useFetch = (url: string) => {
 
   return { data, loading }
 }
-
-export default useFetch
