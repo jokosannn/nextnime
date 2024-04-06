@@ -2,6 +2,7 @@ import { login } from '@/libs/prisma/service'
 import { NextAuthOptions } from 'next-auth'
 import NextAuth from 'next-auth/next'
 import CredentialsProvider from 'next-auth/providers/credentials'
+import bcrypt from 'bcrypt'
 
 export const authOptions: NextAuthOptions = {
   session: {
@@ -23,7 +24,12 @@ export const authOptions: NextAuthOptions = {
         }
         const user: any = await login(data)
         if (user) {
-          return user
+          const passwordCompare = await bcrypt.compare(data.password, user.password)
+          if (passwordCompare) {
+            return user
+          } else {
+            return null
+          }
         } else {
           return null
         }
@@ -33,9 +39,9 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, account, user }: any) {
       if (account?.provider === 'credentials') {
-        token.username = user.username
         token.email = user.email
-        token.password = user.password
+        token.username = user.username
+        token.role = user.role
       }
       return token
     },
@@ -44,7 +50,10 @@ export const authOptions: NextAuthOptions = {
         session.user.email = token.email
       }
       if ('username' in token) {
-        session.user.username = token.username
+        session.user.name = token.username
+      }
+      if ('role' in token) {
+        session.user.role = token.role
       }
       return session
     },
