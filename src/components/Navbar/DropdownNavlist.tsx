@@ -1,9 +1,6 @@
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-// import { IoIosArrowDown } from 'react-icons/io'
 import Link from 'next/link'
-import { ImMenu2 } from 'react-icons/im'
-import { TfiMenuAlt } from 'react-icons/tfi'
 import { BsMenuDown } from 'react-icons/bs'
 import { usePathname } from 'next/navigation'
 
@@ -33,8 +30,6 @@ export default function Example() {
       <div>
         <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50">
           <BsMenuDown className="text-2xl" />
-          {/* <IoIosArrowDown className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" /> */}
-          {/* <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" /> */}
         </Menu.Button>
       </div>
 
@@ -66,21 +61,6 @@ export default function Example() {
                 )}
               </Menu.Item>
             ))}
-            {/* <form method="POST" action="#">
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    type="submit"
-                    className={classNames(
-                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                      'block w-full px-4 py-2 text-left text-sm'
-                    )}
-                  >
-                    Sign out
-                  </button>
-                )}
-              </Menu.Item>
-            </form> */}
           </div>
         </Menu.Items>
       </Transition>

@@ -41,7 +41,6 @@ export const authOptions: NextAuthOptions = {
       if (account?.provider === 'credentials') {
         token.email = user.email
         token.username = user.username
-        token.role = user.role
       }
       return token
     },
@@ -51,9 +50,6 @@ export const authOptions: NextAuthOptions = {
       }
       if ('username' in token) {
         session.user.name = token.username
-      }
-      if ('role' in token) {
-        session.user.role = token.role
       }
       return session
     },

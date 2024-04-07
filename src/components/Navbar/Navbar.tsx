@@ -1,4 +1,5 @@
 'use client'
+
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import React, { RefObject, useEffect, useRef, useState } from 'react'
@@ -6,7 +7,8 @@ import DropdownNavlist from './DropdownNavlist'
 import { TbWorldSearch } from 'react-icons/tb'
 import { ImCross } from 'react-icons/im'
 import SelectBox from './SelectBox'
-import { signIn, signOut, useSession } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
+import ProfileNavbar from './ProfileNavbar'
 
 const navbarIsNotActive = ['/login', '/register']
 
@@ -126,12 +128,7 @@ const Navbar = () => {
                     Login
                   </button>
                 ) : (
-                  <button
-                    onClick={() => signOut()}
-                    className="bg-primary px-5 py-2 grid place-content-center rounded-md text-white"
-                  >
-                    Sign Out
-                  </button>
+                  <ProfileNavbar />
                 )}
               </div>
             </div>

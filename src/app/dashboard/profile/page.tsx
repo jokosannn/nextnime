@@ -1,11 +1,12 @@
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
-import { getServerSession } from 'next-auth'
-import { useSession } from 'next-auth/react'
+import Session from '@/utils/session'
 
 export default async function Profile() {
-  const { user }: any = await getServerSession(authOptions)
+  const user: any = await Session()
   console.log(user)
-  // const { data: session, status } = useSession()
-  // console.log({ session, status })
-  return <section className="wrapper">name: {user.name}</section>
+  return (
+    <section className="wrapper">
+      <p>name: {user?.name}</p>
+      <p>role: {user?.role}</p>
+    </section>
+  )
 }

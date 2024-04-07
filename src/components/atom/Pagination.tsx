@@ -19,7 +19,7 @@ const Pagination = ({ page, lastPagination }: { page: string; lastPagination: nu
       <button
         disabled={page === '1' ? true : false}
         className="bg-primary px-4 py-2 rounded-md text-white disabled:cursor-not-allowed disabled:opacity-60"
-        onClick={() => push(`/anime/populer/${parseInt(page) - 1}`)}
+        onClick={() => push(`${pathReplace}/${parseInt(page) - 1}`)}
       >
         prev
       </button>

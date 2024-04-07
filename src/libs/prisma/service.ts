@@ -13,7 +13,6 @@ export const login = async (userLogin: { email: string; password: string }) => {
       email: user?.email,
       username: user?.username,
       password: user?.password,
-      role: user?.role,
     }
 
     if (user) {
@@ -26,12 +25,7 @@ export const login = async (userLogin: { email: string; password: string }) => {
   }
 }
 
-export const register = async (userData: {
-  username: string
-  email: string
-  password: string
-  role?: string
-}) => {
+export const register = async (userData: { username: string; email: string; password: string }) => {
   const q = await prisma.user.findUnique({
     where: {
       email: userData.email,
@@ -40,7 +34,6 @@ export const register = async (userData: {
   if (q) {
     return { status: false, statusCode: 400, message: 'email sudah ada' }
   } else {
-    userData.role = 'member'
     userData.password = await bcrypt.hash(userData.password, 5)
     try {
       const user = await prisma.user.create({
@@ -48,7 +41,6 @@ export const register = async (userData: {
           username: userData.username,
           email: userData.email,
           password: userData.password,
-          role: userData.role,
         },
       })
       return { status: true, statusCode: 200, message: 'success register', user }
