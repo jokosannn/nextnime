@@ -4,8 +4,6 @@ import Link from 'next/link'
 import { BsMenuDown } from 'react-icons/bs'
 import { usePathname } from 'next/navigation'
 
-// import { ChevronDownIcon } from '@heroicons/react/20/solid'
-
 type DataList = {
   name: string
   path: string
