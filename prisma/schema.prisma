@@ -20,3 +20,23 @@ model User {
   username String
   image    String?
 }
+
+model AnimeCollection {
+  id           String  @id @default(cuid())
+  user_email   String
+  anime_mal_id String
+  anime_title  String?
+  anime_image  String?
+
+  @@unique([user_email, anime_mal_id])
+}
+
+model MangaCollection {
+  id           String  @id @default(cuid())
+  user_email   String
+  manga_mal_id String
+  manga_title  String?
+  manga_image  String?
+
+  @@unique([user_email, manga_mal_id])
+}

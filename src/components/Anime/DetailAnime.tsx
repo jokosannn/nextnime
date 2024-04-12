@@ -7,14 +7,26 @@ import { img } from '@/utils/img'
 import { getDataResponse } from '@/utils/api'
 import { Suspense } from 'react'
 import LoadingDetail from '../Loading/LoadingDetail'
+import Session from '@/utils/session'
+import ButtonCollection from './ButtonCollection'
+import { prisma } from '@/libs/prisma/prisma'
+import { BsFillBookmarkCheckFill } from 'react-icons/bs'
 
 const DetailAnime = async ({ id }: { id: string }) => {
   const data = await getDataResponse(`/anime/${id}/full`)
   const result = await data?.data
+  const user: any = await Session()
+
+  const collections = await prisma.animeCollection.findFirst({
+    where: {
+      anime_mal_id: id,
+      user_email: user?.email,
+    },
+  })
 
   const ImageDetail = () => {
     return (
-      <div className="w-full h-auto sm:w-[300px] rounded-md overflow-hidden">
+      <div className="relative w-full h-auto sm:w-[300px] rounded-md overflow-hidden">
         <Image
           src={result?.images?.webp.image_url ? result?.images?.webp.image_url : img.Poster}
           width={100}
@@ -23,6 +35,23 @@ const DetailAnime = async ({ id }: { id: string }) => {
           priority
           className="w-full h-full object-cover bg-center"
         />
+        {user ? (
+          <>
+            {collections ? (
+              <button className="w-fit bg-primary cursor-not-allowed px-3 py-1 absolute top-2 right-2 flex items-center gap-1 rounded-md">
+                <BsFillBookmarkCheckFill className="text-xs text-white" />{' '}
+                <span className="text-xs block text-white capitalize">collected</span>
+              </button>
+            ) : (
+              <ButtonCollection
+                user_email={user?.email}
+                anime_mal_id={id}
+                anime_title={result?.title}
+                anime_image={result?.images?.webp.image_url}
+              />
+            )}
+          </>
+        ) : null}
       </div>
     )
   }

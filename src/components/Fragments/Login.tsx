@@ -10,7 +10,7 @@ const Login = () => {
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(false)
   const query = useSearchParams()
-  const { push } = useRouter()
+  const { replace } = useRouter()
 
   const callbackUrl = query.get('callbackUrl') || '/'
   const handleLogin = async (e: any) => {
@@ -26,7 +26,7 @@ const Login = () => {
       })
       if (!res?.error) {
         setLoading(false)
-        push(callbackUrl)
+        replace(callbackUrl)
       } else {
         console.log(res.error)
         setLoading(false)
