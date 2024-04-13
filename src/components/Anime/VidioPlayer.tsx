@@ -1,7 +1,8 @@
 'use client'
+
 import { useState } from 'react'
-import { FaYoutube } from 'react-icons/fa'
 import YouTube from 'react-youtube'
+// import { FaYoutube } from 'react-icons/fa'
 
 const VidioPlayer = ({ YoutubeId }: { YoutubeId: string }) => {
   const [isOpen, setIsOpen] = useState(true)
@@ -31,21 +32,21 @@ const VidioPlayer = ({ YoutubeId }: { YoutubeId: string }) => {
     )
   }
 
-  const ButtonOpenTrailer = () => {
-    return (
-      <button
-        onClick={() => setIsOpen((prev) => !prev)}
-        className="fixed bottom-8 right-4 bg-red-secondary px-3 py-2 rounded-sm text-white flex items-center"
-      >
-        Tonton Trailer
-        <span>
-          <FaYoutube className="text-xl ml-1" />
-        </span>
-      </button>
-    )
-  }
+  // const ButtonOpenTrailer = () => {
+  //   return (
+  //     <button
+  //       onClick={() => setIsOpen((prev) => !prev)}
+  //       className="fixed bottom-8 right-4 bg-red-secondary px-3 py-2 rounded-sm text-white flex items-center"
+  //     >
+  //       Tonton Trailer
+  //       <span>
+  //         <FaYoutube className="text-xl ml-1" />
+  //       </span>
+  //     </button>
+  //   )
+  // }
 
-  return isOpen ? <Trailer /> : <ButtonOpenTrailer />
+  return isOpen && <Trailer />
 }
 
 export default VidioPlayer

@@ -1,6 +1,5 @@
 'use client'
 
-// import { prisma } from '@/libs/prisma/prisma'
 import { useState } from 'react'
 import { BsFillBookmarkCheckFill } from 'react-icons/bs'
 import { FaBookmark } from 'react-icons/fa'
@@ -22,7 +21,6 @@ const ButtonCollection: React.FC<ButtonCollectionProps> = ({
 
   const handleCollection = async () => {
     const dataCollection = { user_email, anime_mal_id, anime_title, anime_image }
-    console.log(dataCollection)
     const collection = await fetch('/api/anime/collection', {
       method: 'POST',
       body: JSON.stringify(dataCollection),

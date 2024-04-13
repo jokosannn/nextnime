@@ -40,3 +40,20 @@ model MangaCollection {
 
   @@unique([user_email, manga_mal_id])
 }
+
+model Reply {
+  id             Int           @id @default(autoincrement())
+  email          String
+  username       String
+  animeCommentId String?
+  AnimeComment   AnimeComment? @relation(fields: [animeCommentId], references: [id])
+}
+
+model AnimeComment {
+  id           String  @id @default(cuid())
+  user_email   String
+  anime_mal_id String
+  username     String
+  anime_title  String
+  reply        Reply[]
+}
