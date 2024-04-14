@@ -11,6 +11,8 @@ import Session from '@/utils/session'
 import ButtonCollection from './ButtonCollection'
 import { prisma } from '@/libs/prisma/prisma'
 import { BsFillBookmarkCheckFill } from 'react-icons/bs'
+import AnimeComment from './AnimeComment'
+import AnimeCommentList from './AnimeCommentList'
 
 const DetailAnime = async ({ id }: { id: string }) => {
   const data = await getDataResponse(`/anime/${id}/full`)
@@ -173,76 +175,14 @@ const DetailAnime = async ({ id }: { id: string }) => {
         <div className="mt-4">
           <p className="font-bold">Comment :</p>
           <div className="w-full p-4 bg-[#f2f2f2] rounded-sm">
-            <div className="w-full flex gap-2 mb-4">
-              <div>
-                <Image
-                  src={user?.image ? user?.image : img.Profile}
-                  alt=""
-                  width={50}
-                  height={50}
-                />
-              </div>
-              <form className="w-full flex flex-col gap-1 items-end">
-                <textarea
-                  name=""
-                  rows={4}
-                  placeholder="Tulis Komentar..."
-                  className="w-full px-2 py-2 border border-slate-400 focus:border-slate-600 focus:border text-black-gray"
-                />
-                <button className="bg-primary w-fit px-3 py-1 text-sm rounded-sm text-white">
-                  Posting
-                </button>
-              </form>
-            </div>
-            <div className="py-2 flex flex-col gap-3">
-              <div className="w-full flex gap-2">
-                <div>
-                  <Image
-                    src={user?.image ? user?.image : img.Profile}
-                    alt=""
-                    width={50}
-                    height={50}
-                  />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <div className="flex flex-col gap-1">
-                    <h1 className="text-sm font-bold">Joko Santoso</h1>
-                    <p className="text-sm">keren banget cuy..</p>
-                    <p className="text-sm text-primary">Balas</p>
-                  </div>
-                  <div className="w-full flex gap-2 pl-2 border-l border-l-slate-200">
-                    <div>
-                      <Image
-                        src={user?.image ? user?.image : img.Profile}
-                        alt=""
-                        width={50}
-                        height={50}
-                      />
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <h1 className="text-sm font-bold">Samsul</h1>
-                      <p className="text-sm">kurang keren filmnya cuy..</p>
-                      <p className="text-sm text-primary">Balas</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="w-full flex gap-2">
-                <div>
-                  <Image
-                    src={user?.image ? user?.image : img.Profile}
-                    alt=""
-                    width={50}
-                    height={50}
-                  />
-                </div>
-                <div className="flex flex-col gap-1">
-                  <h1 className="text-sm font-bold">Samsul</h1>
-                  <p className="text-sm">kurang keren filmnya cuy..</p>
-                  <p className="text-sm text-primary">Balas</p>
-                </div>
-              </div>
-            </div>
+            <AnimeComment
+              anime_mal_id={id}
+              anime_title={result?.title}
+              username={user?.name}
+              user_email={user?.email}
+              user_image={user?.image ? user?.image : ''}
+            />
+            <AnimeCommentList id={id} />
           </div>
         </div>
         <VidioPlayer YoutubeId={result?.trailer?.youtube_id} />

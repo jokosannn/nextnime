@@ -9,7 +9,6 @@ export default function withAuth(middleware: NextMiddleware, requireAuth: string
 
     if (requireAuth.includes(pathname)) {
       const token = await getToken({ req, secret: process.env.SECRET_ID })
-      console.log(token)
 
       if (!token && !authPage.includes(pathname)) {
         const url = new URL('/login', req.url)
