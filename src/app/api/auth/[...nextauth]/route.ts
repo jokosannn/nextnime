@@ -1,7 +1,8 @@
-import { login } from '@/libs/prisma/service'
+import { login, loginWithGoogle } from '@/libs/prisma/service'
 import { NextAuthOptions } from 'next-auth'
 import NextAuth from 'next-auth/next'
 import CredentialsProvider from 'next-auth/providers/credentials'
+import GoogleProvider from 'next-auth/providers/google'
 import bcrypt from 'bcrypt'
 
 export const authOptions: NextAuthOptions = {
@@ -35,12 +36,31 @@ export const authOptions: NextAuthOptions = {
         }
       },
     }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID || '',
+      clientSecret: process.env.GOOGLE_CLIENT_SECREET || '',
+    }),
   ],
   callbacks: {
     async jwt({ token, account, user }: any) {
       if (account?.provider === 'credentials') {
         token.email = user.email
         token.username = user.username
+      }
+      if (account?.provider === 'google') {
+        const data = {
+          username: user.name,
+          email: user.email,
+          image: user.image,
+        }
+
+        await loginWithGoogle(data, (result: { status: boolean; data: any }) => {
+          if (result.status) {
+            token.username = result.data.username
+            token.email = result.data.email
+            token.image = result.data.image
+          }
+        })
       }
       return token
     },
@@ -50,6 +70,9 @@ export const authOptions: NextAuthOptions = {
       }
       if ('username' in token) {
         session.user.name = token.username
+      }
+      if ('image' in token) {
+        session.user.image = token.image
       }
       return session
     },

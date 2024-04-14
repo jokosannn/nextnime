@@ -10,6 +10,8 @@ import { BsFillBookmarkCheckFill } from 'react-icons/bs'
 import ButtonCollection from './ButtonCollection'
 import Session from '@/utils/session'
 import { prisma } from '@/libs/prisma/prisma'
+import MangaComment from './MangaComment'
+import MangaCommentList from './MangaCommentList'
 
 const DetailManga = async ({ id }: { id: string }) => {
   const data = await getDataResponse(`/manga/${id}/full`)
@@ -168,6 +170,19 @@ const DetailManga = async ({ id }: { id: string }) => {
           ) : (
             <span className="text-red-secondary text-sm">Opss Nothing!!</span>
           )}
+        </div>
+        <div className="mt-4">
+          <p className="font-bold">Comment :</p>
+          <div className="w-full p-4 bg-[#f2f2f2] rounded-sm">
+            <MangaComment
+              manga_mal_id={id}
+              manga_title={result?.title}
+              username={user?.name}
+              user_email={user?.email}
+              user_image={user?.image ? user?.image : ''}
+            />
+            <MangaCommentList email={user?.email} id={id} />
+          </div>
         </div>
       </Suspense>
     </div>

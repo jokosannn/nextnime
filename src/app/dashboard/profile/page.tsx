@@ -8,7 +8,7 @@ export default async function Profile() {
 
   return (
     <section className="wrapper">
-      <ProfileUser img={user?.img ? user?.img : img.Profile} name={user?.name} />
+      <ProfileUser img={user?.image ? user?.image : img.Profile} name={user?.name} />
     </section>
   )
 }

@@ -1,7 +1,6 @@
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import Image from 'next/image'
-// import Session from '@/utils/session'
 import { img } from '@/utils/img'
 import { signOut } from 'next-auth/react'
 import Link from 'next/link'
@@ -10,14 +9,13 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function ProfileNavbar() {
-  // const session = await Session()
+export default function ProfileNavbar({ image }: { image: string }) {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button className="grid place-content-center w-8 aspect-[1/1] overflow-hidden rounded-full">
           <Image
-            src={img.Profile}
+            src={image ? image : img.Profile}
             alt="profile"
             width={50}
             height={50}

@@ -17,7 +17,7 @@ const Navbar = () => {
   const [endPoint, setEndPoint] = useState('anime')
   const inputRef: RefObject<HTMLInputElement> = useRef(null)
   const { push } = useRouter()
-  const { status }: any = useSession()
+  const { data: session, status }: any = useSession()
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -123,7 +123,7 @@ const Navbar = () => {
                   Login
                 </button>
               ) : (
-                <ProfileNavbar />
+                <ProfileNavbar image={session?.user?.image} />
               )}
             </div>
           </div>

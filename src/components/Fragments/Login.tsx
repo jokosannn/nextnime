@@ -94,20 +94,12 @@ const Login = () => {
       <div className="flex flex-col gap-3">
         <div>
           <button
-            type="submit"
+            type="button"
+            onClick={() => signIn('google', { callbackUrl, redirect: false })}
             className="flex w-full justify-center items-center gap-2 rounded-md bg-white px-3 py-1.5 text-sm font-semibold leading-6 border text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             <FcGoogle />
             Continue with Google
-          </button>
-        </div>
-        <div>
-          <button
-            type="submit"
-            className="flex w-full justify-center items-center gap-2 rounded-md bg-black-gray px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-black-gray focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black-gray"
-          >
-            <FaGithub />
-            Continue with Github
           </button>
         </div>
       </div>

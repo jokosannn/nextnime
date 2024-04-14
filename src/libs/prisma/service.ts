@@ -49,3 +49,40 @@ export const register = async (userData: { username: string; email: string; pass
     }
   }
 }
+
+export const loginWithGoogle = async (
+  userData: { username: string; email: string; image: string },
+  callback: any
+) => {
+  const q = await prisma.user.findUnique({
+    where: {
+      email: userData.email,
+    },
+  })
+  if (q) {
+    await prisma.user
+      .update({
+        where: {
+          email: userData.email,
+        },
+        data: userData,
+      })
+      .then(() => {
+        callback({ status: true, message: 'login google berhasil', data: userData })
+      })
+      .catch((error) => {
+        callback({ status: false, message: error })
+      })
+  } else {
+    await prisma.user
+      .create({
+        data: userData,
+      })
+      .then(() => {
+        callback({ status: true, message: 'login google berhasil', data: userData })
+      })
+      .catch((error) => {
+        callback({ status: false, message: error })
+      })
+  }
+}

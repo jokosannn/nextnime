@@ -9,12 +9,12 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id       String  @id @default(uuid())
+  id       String  @id @default(cuid())
   email    String  @unique
   password String?
   username String
@@ -48,5 +48,15 @@ model AnimeComment {
   anime_mal_id String
   username     String
   anime_title  String
+  comment      String
+}
+
+model MangaComment {
+  id           String @id @default(cuid())
+  user_email   String
+  user_image   String
+  manga_mal_id String
+  username     String
+  manga_title  String
   comment      String
 }
