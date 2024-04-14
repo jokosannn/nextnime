@@ -182,7 +182,7 @@ const DetailAnime = async ({ id }: { id: string }) => {
               user_email={user?.email}
               user_image={user?.image ? user?.image : ''}
             />
-            <AnimeCommentList id={id} />
+            <AnimeCommentList email={user?.email} id={id} />
           </div>
         </div>
         <VidioPlayer YoutubeId={result?.trailer?.youtube_id} />

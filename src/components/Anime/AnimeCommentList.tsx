@@ -1,12 +1,14 @@
 import { prisma } from '@/libs/prisma/prisma'
 import { img } from '@/utils/img'
 import Image from 'next/image'
+import DeleteAnimeComment from './DeleteAnimeComment'
 
 interface AnimeCommentListProps {
   id: string
+  email: string
 }
 
-const AnimeCommentList: React.FC<AnimeCommentListProps> = async ({ id }) => {
+const AnimeCommentList: React.FC<AnimeCommentListProps> = async ({ id, email }) => {
   const comments = await prisma.animeComment.findMany({ where: { anime_mal_id: id } })
 
   return (
@@ -27,6 +29,7 @@ const AnimeCommentList: React.FC<AnimeCommentListProps> = async ({ id }) => {
                 <div className="flex flex-col gap-1">
                   <h1 className="text-sm font-bold">{comment.username}</h1>
                   <p className="text-sm">{comment.comment}</p>
+                  {comment.user_email === email && <DeleteAnimeComment id={comment.id} />}
                 </div>
               </div>
             </div>

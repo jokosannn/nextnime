@@ -9,7 +9,7 @@ type ProfileUserProps = {
 const ProfileUser: React.FC<ProfileUserProps> = ({ img, name }) => {
   return (
     <div className="mx-auto max-w-[230px] mt-10">
-      <h1 className="text-black-gray text-center font-semibold text-xl mb-2 w-full">
+      <h1 className="text-black-gray text-center font-semibold text-xl mb-2 w-fit">
         Welcome, {name}
       </h1>
       <div className="w-ful aspect-[1/1.2] border border-slate-200 p-2 flex flex-col items-center justify-between rounded-md shadow-sm overflow-hidden">
