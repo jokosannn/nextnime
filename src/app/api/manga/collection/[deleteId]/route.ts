@@ -1,10 +1,10 @@
 import { prisma } from '@/libs/prisma/prisma'
 import { NextRequest, NextResponse } from 'next/server'
 
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(request: NextRequest, { params }: { params: { deleteId: string } }) {
   const dataCollection = await prisma.mangaCollection.delete({
     where: {
-      id: params.id,
+      id: params.deleteId,
     },
   })
   if (!dataCollection) {

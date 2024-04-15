@@ -11,7 +11,7 @@ const ButtonDeleteMangaCollection: React.FC<ButtonDeleteCollectionProps> = ({ ma
   const router = useRouter()
 
   const handleDeleteCollection = async () => {
-    const dataDelete = await fetch(`/api/manga/${manga_id}`, {
+    const dataDelete = await fetch(`/api/manga/collection/${manga_id}`, {
       method: 'DELETE',
     })
     if (dataDelete.status) router.refresh()

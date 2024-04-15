@@ -11,7 +11,7 @@ const ButtonDeleteAnimeCollection: React.FC<ButtonDeleteCollectionProps> = ({ an
   const router = useRouter()
 
   const handleDeleteCollection = async () => {
-    const dataDelete = await fetch(`/api/anime/${anime_id}`, {
+    const dataDelete = await fetch(`/api/anime/collection/${anime_id}`, {
       method: 'DELETE',
     })
     if (dataDelete.status) router.refresh()
