@@ -5,7 +5,7 @@ const CardManga = React.lazy(() => import('@/components/CardManga'))
 
 const SarchPageManga = async ({ params }: { params: { query: string } }) => {
   const decodedQuery = decodeURI(params.query)
-  const data = await getDataResponse(`/anime?q=${decodedQuery}`)
+  const data = await getDataResponse(`/manga?q=${decodedQuery}`)
 
   return (
     <section className="wrapper">
