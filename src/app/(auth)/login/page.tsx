@@ -1,4 +1,6 @@
 import Login from '@/components/Fragments/Login'
+import LoadingSpinner from '@/components/Loading/LoadingSpinner'
+import { Suspense } from 'react'
 
 const LoginPage = () => {
   return (
@@ -14,7 +16,9 @@ const LoginPage = () => {
             Sign in to your account
           </h2>
         </div>
-        <Login />
+        <Suspense fallback={<LoadingSpinner />}>
+          <Login />
+        </Suspense>
       </div>
     </div>
   )
