@@ -1,6 +1,6 @@
 'use client'
 import React, { Suspense, useState } from 'react'
-import Switch from '../Atom/Switch'
+import Switch from '../atom/Switch'
 import useFetch from '@/hooks/useFetch'
 import Link from 'next/link'
 import LoadingCard from '../Loading/LoadingCard'

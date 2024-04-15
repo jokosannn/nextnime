@@ -1,4 +1,4 @@
-import Pagination from '@/components/Atom/Pagination'
+import Pagination from '@/components/atom/Pagination'
 import CardManga from '@/components/CardManga'
 import LoadingCard from '@/components/Loading/LoadingCard'
 import { getNestedDataResponse } from '@/utils/api'

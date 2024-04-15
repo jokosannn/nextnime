@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Rating from './Atom/Rating'
+import Rating from './atom/Rating'
 import Link from 'next/link'
 import { img } from '@/utils/img'
 

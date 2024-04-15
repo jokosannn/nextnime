@@ -1,4 +1,4 @@
-import Pagination from '@/components/Atom/Pagination'
+import Pagination from '@/components/atom/Pagination'
 import LoadingCard from '@/components/Loading/LoadingCard'
 import { getDataResponse } from '@/utils/api'
 import React, { Suspense } from 'react'

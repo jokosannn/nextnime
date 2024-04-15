@@ -3,7 +3,7 @@ import useFetch from '@/hooks/useFetch'
 import React, { Suspense, useState } from 'react'
 import LoadingCard from '../Loading/LoadingCard'
 import Link from 'next/link'
-import Switch from '../Atom/Switch'
+import Switch from '../atom/Switch'
 import LoadingSpinner from '../Loading/LoadingSpinner'
 const CardManga = React.lazy(() => import('../CardManga'))
 

@@ -1,4 +1,4 @@
-import Button from '@/components/Atom/Button'
+import Button from '@/components/atom/Button'
 import Link from 'next/link'
 
 export default function Home() {

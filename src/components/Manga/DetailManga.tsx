@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import Rating from '../Atom/Rating'
-import Button from '../Atom/Button'
+import Rating from '../atom/Rating'
+import Button from '../atom/Button'
 import Link from 'next/link'
 import { img } from '@/utils/img'
 import { getDataResponse } from '@/utils/api'
