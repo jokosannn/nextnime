@@ -14,7 +14,11 @@ Here we have project screenshot:
 
 ## Demo
 
-<a href="https://nextnime.vercel.appbackend">View Demo Website Here</a>
+<a href="https://nextnime.vercel.app" target="_blank"> NextNime - View Demo Website Here</a>
+
+## Api
+
+<a href="https://jikan.moe" target="_blank">Jikan API - UNOFFICIAL MYANIMELIST API</a>
 
 ## Technical Stack
 
