@@ -1,52 +1,52 @@
-'use client'
+'use client';
 
-import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
-import React, { RefObject, useEffect, useRef, useState } from 'react'
-import DropdownNavlist from './DropdownNavlist'
-import { TbWorldSearch } from 'react-icons/tb'
-import { ImCross } from 'react-icons/im'
-import SelectBox from './SelectBox'
-import { signIn, useSession } from 'next-auth/react'
-import ProfileNavbar from './ProfileNavbar'
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
+import React, { RefObject, useEffect, useRef, useState } from 'react';
+import DropdownNavlist from './DropdownNavlist';
+import { TbWorldSearch } from 'react-icons/tb';
+import { ImCross } from 'react-icons/im';
+import SelectBox from './SelectBox';
+import { signIn, useSession } from 'next-auth/react';
+import ProfileNavbar from './ProfileNavbar';
 
 const Navbar = () => {
-  const [isNavInput, setIsNavInput] = useState(false)
-  const [isNavScrool, setIsNavScrool] = useState(false)
-  const [query, setQuery] = useState('')
-  const [endPoint, setEndPoint] = useState('anime')
-  const inputRef: RefObject<HTMLInputElement> = useRef(null)
-  const { push } = useRouter()
-  const { data: session, status }: any = useSession()
+  const [isNavInput, setIsNavInput] = useState(false);
+  const [isNavScrool, setIsNavScrool] = useState(false);
+  const [query, setQuery] = useState('');
+  const [endPoint, setEndPoint] = useState('anime');
+  const inputRef: RefObject<HTMLInputElement> = useRef(null);
+  const { push } = useRouter();
+  const { data: session, status }: any = useSession();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     if (!query || query.trim() === '') {
-      return
+      return;
     } else {
-      push(`/${endPoint}/search/${query}`)
-      setQuery('')
-      setIsNavInput(false)
-      if (inputRef.current) inputRef.current.blur()
+      push(`/${endPoint}/search/${query}`);
+      setQuery('');
+      setIsNavInput(false);
+      if (inputRef.current) inputRef.current.blur();
     }
-  }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
-      const { scrollY } = window
+      const { scrollY } = window;
       if (scrollY > 0) {
-        setIsNavScrool(true)
-        setIsNavInput(false)
-        if (inputRef.current) inputRef.current.blur()
+        setIsNavScrool(true);
+        setIsNavInput(false);
+        if (inputRef.current) inputRef.current.blur();
       } else {
-        setIsNavScrool(false)
+        setIsNavScrool(false);
       }
-    }
-    window.addEventListener('scroll', handleScroll, { passive: true })
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <header
@@ -107,8 +107,8 @@ const Navbar = () => {
             <TbWorldSearch
               className="text-[27px] cursor-pointer block sm:hidden"
               onClick={() => {
-                setIsNavInput(!isNavInput)
-                if (inputRef.current) inputRef.current.focus()
+                setIsNavInput(!isNavInput);
+                if (inputRef.current) inputRef.current.focus();
               }}
             />
             <div className="mx-auto">
@@ -130,7 +130,7 @@ const Navbar = () => {
         </div>
       </nav>
     </header>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

@@ -1,21 +1,21 @@
-'use client'
-import useFetch from '@/hooks/useFetch'
-import React, { Suspense, useState } from 'react'
-import LoadingCard from '../Loading/LoadingCard'
-import Link from 'next/link'
-import Switch from '../atom/Switch'
-import LoadingSpinner from '../Loading/LoadingSpinner'
-const CardManga = React.lazy(() => import('../CardManga'))
+'use client';
+import useFetch from '@/hooks/useFetch';
+import React, { Suspense, useState } from 'react';
+import LoadingCard from '../Loading/LoadingCard';
+import Link from 'next/link';
+import Switch from '../atom/Switch';
+import LoadingSpinner from '../Loading/LoadingSpinner';
+const CardManga = React.lazy(() => import('../CardManga'));
 
 const PopulerManga = () => {
-  const [endPoint, setEndPoint] = useState('manga')
+  const [endPoint, setEndPoint] = useState('manga');
   const { data, loading }: { data: any; loading: boolean } = useFetch(
     `/top/manga?limit=14&type=${endPoint}`
-  )
+  );
 
   const onTabChange = (item: string) => {
-    setEndPoint(item === 'Manga' ? 'manga' : 'novel')
-  }
+    setEndPoint(item === 'Manga' ? 'manga' : 'novel');
+  };
 
   return (
     <div className="mb-8">
@@ -40,7 +40,7 @@ const PopulerManga = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default PopulerManga
+export default PopulerManga;

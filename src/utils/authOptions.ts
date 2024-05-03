@@ -1,8 +1,8 @@
-import { NextAuthOptions } from 'next-auth'
-import CredentialsProvider from 'next-auth/providers/credentials'
-import GoogleProvider from 'next-auth/providers/google'
-import bcrypt from 'bcrypt'
-import { login, loginWithGoogle } from '@/libs/prisma/service'
+import { NextAuthOptions } from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import GoogleProvider from 'next-auth/providers/google';
+import bcrypt from 'bcrypt';
+import { login, loginWithGoogle } from '@/libs/prisma/service';
 
 export const authOptions: NextAuthOptions = {
   session: {
@@ -19,19 +19,19 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         const data = credentials as {
-          email: string
-          password: string
-        }
-        const user: any = await login(data)
+          email: string;
+          password: string;
+        };
+        const user: any = await login(data);
         if (user) {
-          const passwordCompare = await bcrypt.compare(data.password, user.password)
+          const passwordCompare = await bcrypt.compare(data.password, user.password);
           if (passwordCompare) {
-            return user
+            return user;
           } else {
-            return null
+            return null;
           }
         } else {
-          return null
+          return null;
         }
       },
     }),
@@ -43,40 +43,40 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, account, user }: any) {
       if (account?.provider === 'credentials') {
-        token.email = user.email
-        token.username = user.username
+        token.email = user.email;
+        token.username = user.username;
       }
       if (account?.provider === 'google') {
         const data = {
           username: user.name,
           email: user.email,
           image: user.image,
-        }
+        };
 
         await loginWithGoogle(data, (result: { status: boolean; data: any }) => {
           if (result.status) {
-            token.username = result.data.username
-            token.email = result.data.email
-            token.image = result.data.image
+            token.username = result.data.username;
+            token.email = result.data.email;
+            token.image = result.data.image;
           }
-        })
+        });
       }
-      return token
+      return token;
     },
     async session({ session, token }: any) {
       if ('email' in token) {
-        session.user.email = token.email
+        session.user.email = token.email;
       }
       if ('username' in token) {
-        session.user.name = token.username
+        session.user.name = token.username;
       }
       if ('image' in token) {
-        session.user.image = token.image
+        session.user.image = token.image;
       }
-      return session
+      return session;
     },
   },
   pages: {
     signIn: '/login',
   },
-}
+};

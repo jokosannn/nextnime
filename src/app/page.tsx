@@ -1,5 +1,5 @@
-import Button from '@/components/atom/Button'
-import Link from 'next/link'
+import Button from '@/components/atom/Button';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -9,8 +9,8 @@ export default function Home() {
         vibrant community.
       </h1>
       <p className="text-sm md:text-base mt-4 w-3/4 md:w-2/4 text-center font-medium text-gray-light">
-        Dive into our extensive collection and embark on unforgettable adventures in the exciting
-        world of anime and manga!
+        Dive into our extensive collection and embark on unforgettable adventures in the exciting world
+        of anime and manga!
       </p>
       <div className="flex gap-2 mt-4 ">
         <Button variant="primary">
@@ -25,5 +25,5 @@ export default function Home() {
         </Button>
       </div>
     </div>
-  )
+  );
 }
