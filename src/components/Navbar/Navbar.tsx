@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { RefObject, useEffect, useRef, useState } from 'react';
 import DropdownNavlist from './DropdownNavlist';
 import { TbWorldSearch } from 'react-icons/tb';
@@ -14,17 +14,25 @@ const Navbar = () => {
   const [isNavInput, setIsNavInput] = useState(false);
   const [isNavScrool, setIsNavScrool] = useState(false);
   const [query, setQuery] = useState('');
-  const [endPoint, setEndPoint] = useState('anime');
   const inputRef: RefObject<HTMLInputElement> = useRef(null);
   const { push } = useRouter();
   const { data: session, status }: any = useSession();
+
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const params = new URLSearchParams(searchParams);
+
+  const typeEndPoint = params.get('type')?.toString();
+  const [endPoint, setEndPoint] = useState(typeEndPoint || 'anime');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!query || query.trim() === '') {
       return;
     } else {
-      push(`/${endPoint}/search/${query}`);
+      params.set('type', endPoint);
+      params.set('query', query);
+      push(`/search?${params.toString()}`);
       setQuery('');
       setIsNavInput(false);
       if (inputRef.current) inputRef.current.blur();

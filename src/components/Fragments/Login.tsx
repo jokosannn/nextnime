@@ -15,7 +15,7 @@ const Login = () => {
   const callbackUrl = query.get('callbackUrl') || '/';
   const handleLogin = async (e: any) => {
     e.preventDefault();
-    -setLoading(true);
+    setLoading(true);
     setMessage('');
 
     try {

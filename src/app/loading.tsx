@@ -7,7 +7,7 @@ const Loading = () => {
         <div className="w-5 h-5 rounded-full animate-pulse bg-blue-600"></div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Loading
+export default Loading;

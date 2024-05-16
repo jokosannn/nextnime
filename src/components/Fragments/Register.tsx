@@ -12,6 +12,7 @@ const Register = () => {
     e.preventDefault();
     setLoading(true);
     setMessage('');
+
     const response = await fetch('/api/auth/register', {
       method: 'POST',
       body: JSON.stringify({
@@ -20,6 +21,7 @@ const Register = () => {
         password: e.target.password.value,
       }),
     });
+
     if (response.status === 200) {
       e.target.reset();
       setLoading(false);
