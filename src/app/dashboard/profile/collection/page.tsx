@@ -1,24 +1,24 @@
-import ButtonDeleteAnimeCollection from '@/components/Anime/ButtonDeleteAnimeCollection'
-import ButtonDeleteMangaCollection from '@/components/Manga/ButtonDelleteMangaCollection'
-import { prisma } from '@/libs/prisma/prisma'
-import { img } from '@/utils/img'
-import Session from '@/utils/session'
-import Image from 'next/image'
-import Link from 'next/link'
+import ButtonDeleteAnimeCollection from '@/components/Anime/ButtonDeleteAnimeCollection';
+import ButtonDeleteMangaCollection from '@/components/Manga/ButtonDelleteMangaCollection';
+import { prisma } from '@/libs/prisma/prisma';
+import { img } from '@/utils/img';
+import Session from '@/utils/session';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const CollectionsPage = async () => {
-  const user: any = await Session()
+  const user: any = await Session();
   const animeCollections = await prisma.animeCollection.findMany({
     where: {
       user_email: user?.email,
     },
-  })
+  });
 
   const mangaCollections = await prisma.mangaCollection.findMany({
     where: {
       user_email: user?.email,
     },
-  })
+  });
   return (
     <section className="wrapper mb-12">
       <div>
@@ -40,9 +40,7 @@ const CollectionsPage = async () => {
                   </Link>
                 </div>
                 <div>
-                  <h1 className="line-clamp-1 text-sm text-black-gray mt-1">
-                    {collect?.anime_title}
-                  </h1>
+                  <h1 className="line-clamp-1 text-sm text-black-gray mt-1">{collect?.anime_title}</h1>
                   <ButtonDeleteAnimeCollection anime_id={collect.id} />
                 </div>
               </div>
@@ -71,9 +69,7 @@ const CollectionsPage = async () => {
                   </Link>
                 </div>
                 <div>
-                  <h1 className="line-clamp-1 text-sm text-black-gray mt-1">
-                    {collect?.manga_title}
-                  </h1>
+                  <h1 className="line-clamp-1 text-sm text-black-gray mt-1">{collect?.manga_title}</h1>
                   <ButtonDeleteMangaCollection manga_id={collect.id} />
                 </div>
               </div>
@@ -84,7 +80,7 @@ const CollectionsPage = async () => {
         )}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default CollectionsPage
+export default CollectionsPage;

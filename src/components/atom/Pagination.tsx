@@ -1,18 +1,18 @@
-'use client'
-import { usePathname, useRouter } from 'next/navigation'
+'use client';
+import { usePathname, useRouter } from 'next/navigation';
 
 const onlyPagination = [
   '/anime/populer',
   '/anime/recomendations',
   '/manga/populer',
   '/manga/recomendations',
-]
+];
 
 const Pagination = ({ page, lastPagination }: { page: string; lastPagination: number }) => {
-  const pathname = usePathname()
-  const regex = new RegExp(`^(${onlyPagination.join('|')})/\\d+$`)
-  const pathReplace = pathname.replace(regex, '$1')
-  const { push } = useRouter()
+  const pathname = usePathname();
+  const regex = new RegExp(`^(${onlyPagination.join('|')})/\\d+$`);
+  const pathReplace = pathname.replace(regex, '$1');
+  const { push } = useRouter();
 
   return (
     <div className="w-full flex gap-2 justify-center items-center mt-8 mb-6">
@@ -34,7 +34,7 @@ const Pagination = ({ page, lastPagination }: { page: string; lastPagination: nu
         next
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default Pagination
+export default Pagination;

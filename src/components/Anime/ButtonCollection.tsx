@@ -1,14 +1,14 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { BsFillBookmarkCheckFill } from 'react-icons/bs'
-import { FaBookmark } from 'react-icons/fa'
+import { useState } from 'react';
+import { BsFillBookmarkCheckFill } from 'react-icons/bs';
+import { FaBookmark } from 'react-icons/fa';
 
 interface ButtonCollectionProps {
-  user_email: string
-  anime_mal_id: string
-  anime_title: string
-  anime_image: string
+  user_email: string;
+  anime_mal_id: string;
+  anime_title: string;
+  anime_image: string;
 }
 
 const ButtonCollection: React.FC<ButtonCollectionProps> = ({
@@ -17,18 +17,18 @@ const ButtonCollection: React.FC<ButtonCollectionProps> = ({
   anime_title,
   anime_image,
 }) => {
-  const [isCreated, setIsCreated] = useState(false)
+  const [isCreated, setIsCreated] = useState(false);
 
   const handleCollection = async () => {
-    const dataCollection = { user_email, anime_mal_id, anime_title, anime_image }
+    const dataCollection = { user_email, anime_mal_id, anime_title, anime_image };
     const collection = await fetch('/api/anime/collection', {
       method: 'POST',
       body: JSON.stringify(dataCollection),
-    })
+    });
     if (collection.status) {
-      setIsCreated(true)
+      setIsCreated(true);
     }
-  }
+  };
 
   return (
     <>
@@ -47,7 +47,7 @@ const ButtonCollection: React.FC<ButtonCollectionProps> = ({
         </button>
       )}
     </>
-  )
-}
+  );
+};
 
-export default ButtonCollection
+export default ButtonCollection;

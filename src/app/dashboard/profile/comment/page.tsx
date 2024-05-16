@@ -1,19 +1,19 @@
-import { prisma } from '@/libs/prisma/prisma'
-import Session from '@/utils/session'
-import Link from 'next/link'
+import { prisma } from '@/libs/prisma/prisma';
+import Session from '@/utils/session';
+import Link from 'next/link';
 
 const CommentPage = async () => {
-  const user: any = await Session()
+  const user: any = await Session();
   const animeComments = await prisma.animeComment.findMany({
     where: {
       user_email: user?.email,
     },
-  })
+  });
   const mangaComments = await prisma.mangaComment.findMany({
     where: {
       user_email: user?.email,
     },
-  })
+  });
 
   return (
     <section className="wrapper">
@@ -56,7 +56,7 @@ const CommentPage = async () => {
         )}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default CommentPage
+export default CommentPage;

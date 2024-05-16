@@ -1,18 +1,18 @@
-import { Fragment, useState } from 'react'
-import { Listbox, Transition } from '@headlessui/react'
-import { HiOutlineChevronUpDown } from 'react-icons/hi2'
-import { FaCheck } from 'react-icons/fa6'
+import { Fragment, useState } from 'react';
+import { Listbox, Transition } from '@headlessui/react';
+import { HiOutlineChevronUpDown } from 'react-icons/hi2';
+import { FaCheck } from 'react-icons/fa6';
 // import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 
 interface SelectBoxProps {
-  endPoint: string
-  setEndPoint: React.Dispatch<React.SetStateAction<string>>
+  endPoint: string;
+  setEndPoint: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const people = [
   { name: 'anime', value: 'anime' },
   { name: 'manga', value: 'manga' },
-]
+];
 
 export default function SelectBox({ endPoint, setEndPoint }: SelectBoxProps) {
   return (
@@ -20,7 +20,7 @@ export default function SelectBox({ endPoint, setEndPoint }: SelectBoxProps) {
       <Listbox value={endPoint} onChange={setEndPoint}>
         <div className="relative mt-1">
           <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
-            <span className="block truncate capitalize">{endPoint}</span>
+            <span className="block truncate">{endPoint}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <HiOutlineChevronUpDown className="h-5 w-5 text-gray-400" aria-hidden="true" />
             </span>
@@ -45,9 +45,7 @@ export default function SelectBox({ endPoint, setEndPoint }: SelectBoxProps) {
                   {({ selected }) => (
                     <>
                       <span
-                        className={`block truncate text-sm ${
-                          selected ? 'font-medium' : 'font-normal'
-                        }`}
+                        className={`block truncate text-sm ${selected ? 'font-medium' : 'font-normal'}`}
                       >
                         {person.name}
                       </span>
@@ -65,5 +63,5 @@ export default function SelectBox({ endPoint, setEndPoint }: SelectBoxProps) {
         </div>
       </Listbox>
     </div>
-  )
+  );
 }

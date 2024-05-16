@@ -1,10 +1,10 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from 'next/image';
+import Link from 'next/link';
 
 type ProfileUserProps = {
-  img: string
-  name: string
-}
+  img: string;
+  name: string;
+};
 
 const ProfileUser: React.FC<ProfileUserProps> = ({ img, name }) => {
   return (
@@ -34,7 +34,7 @@ const ProfileUser: React.FC<ProfileUserProps> = ({ img, name }) => {
         </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProfileUser
+export default ProfileUser;

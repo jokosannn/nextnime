@@ -1,19 +1,19 @@
-'use client'
+'use client';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 interface DeleteAnimeCommentProps {
-  id: string
+  id: string;
 }
 
 const DeleteAnimeComment: React.FC<DeleteAnimeCommentProps> = ({ id }) => {
-  const router = useRouter()
+  const router = useRouter();
   const handleDeleteComment = async (id: string) => {
     const response = await fetch(`/api/anime/comment/${id}`, {
       method: 'DELETE',
-    })
-    if (response.status) return router.refresh()
-  }
+    });
+    if (response.status) return router.refresh();
+  };
 
   return (
     <p
@@ -22,7 +22,7 @@ const DeleteAnimeComment: React.FC<DeleteAnimeCommentProps> = ({ id }) => {
     >
       Delete
     </p>
-  )
-}
+  );
+};
 
-export default DeleteAnimeComment
+export default DeleteAnimeComment;

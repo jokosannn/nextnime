@@ -1,43 +1,45 @@
-'use client'
-import { signIn } from 'next-auth/react'
-import Link from 'next/link'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { useState } from 'react'
-import { FaGithub } from 'react-icons/fa6'
-import { FcGoogle } from 'react-icons/fc'
+'use client';
+
+import Link from 'next/link';
+import { signIn } from 'next-auth/react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useState } from 'react';
+import { FcGoogle } from 'react-icons/fc';
 
 const Login = () => {
-  const [message, setMessage] = useState('')
-  const [loading, setLoading] = useState(false)
-  const query = useSearchParams()
-  const { replace } = useRouter()
+  const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+  const query = useSearchParams();
+  const { replace } = useRouter();
 
-  const callbackUrl = query.get('callbackUrl') || '/'
+  const callbackUrl = query.get('callbackUrl') || '/';
   const handleLogin = async (e: any) => {
-    e.preventDefault()
-    setLoading(true)
-    setMessage('')
+    e.preventDefault();
+    setLoading(true);
+    setMessage('');
+
     try {
       const res = await signIn('credentials', {
         redirect: false,
         email: e.target.email.value,
         password: e.target.password.value,
         callbackUrl,
-      })
+      });
+
       if (!res?.error) {
-        setLoading(false)
-        replace(callbackUrl)
+        setLoading(false);
+        replace(callbackUrl);
       } else {
-        console.log(res.error)
-        setLoading(false)
-        setMessage('*email atau password tidak cocok')
+        console.log(res.error);
+        setLoading(false);
+        setMessage('*email atau password tidak cocok');
       }
     } catch (error: any) {
-      console.log(error)
-      setMessage(error)
-      setLoading(false)
+      console.log(error);
+      setMessage(error);
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -113,7 +115,7 @@ const Login = () => {
         </Link>
       </p>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

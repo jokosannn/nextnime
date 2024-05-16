@@ -1,21 +1,22 @@
-'use client'
-import React, { Suspense, useState } from 'react'
-import Switch from '../atom/Switch'
-import useFetch from '@/hooks/useFetch'
-import Link from 'next/link'
-import LoadingCard from '../Loading/LoadingCard'
-import LoadingSpinner from '../Loading/LoadingSpinner'
-const CardAnime = React.lazy(() => import('../CardAnime'))
+'use client';
+
+import React, { Suspense, useState } from 'react';
+import Switch from '../atom/Switch';
+import useFetch from '@/hooks/useFetch';
+import Link from 'next/link';
+import LoadingCard from '../Loading/LoadingCard';
+import LoadingSpinner from '../Loading/LoadingSpinner';
+const CardAnime = React.lazy(() => import('../CardAnime'));
 
 const PopulerAnime = () => {
-  const [endPoint, setEndPoint] = useState('movie')
+  const [endPoint, setEndPoint] = useState('movie');
   const { data, loading }: { data: any; loading: boolean } = useFetch(
     `/top/anime?limit=14&type=${endPoint}`
-  )
+  );
 
   const onTabChange = (item: string) => {
-    setEndPoint(item === 'Movie' ? 'movie' : 'tv')
-  }
+    setEndPoint(item === 'Movie' ? 'movie' : 'tv');
+  };
 
   return (
     <div className="mb-8">
@@ -40,7 +41,7 @@ const PopulerAnime = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default PopulerAnime
+export default PopulerAnime;

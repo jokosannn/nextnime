@@ -1,12 +1,12 @@
-import Link from 'next/link'
-import CardAnime from '../CardAnime'
-import { getNestedDataResponse, reproduce } from '@/utils/api'
-import { Suspense } from 'react'
-import LoadingCard from '../Loading/LoadingCard'
+import Link from 'next/link';
+import CardAnime from '../CardAnime';
+import { getNestedDataResponse, reproduce } from '@/utils/api';
+import { Suspense } from 'react';
+import LoadingCard from '../Loading/LoadingCard';
 
 const RecomendationAnime = async () => {
-  const data: any = await getNestedDataResponse('/recommendations/anime', 'entry')
-  const result: object[] = reproduce(data, 7)
+  const data: any = await getNestedDataResponse('/recommendations/anime', 'entry');
+  const result: object[] = reproduce(data, 7);
 
   return (
     <div className="mb-8">
@@ -26,7 +26,7 @@ const RecomendationAnime = async () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default RecomendationAnime
+export default RecomendationAnime;

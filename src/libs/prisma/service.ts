@@ -1,40 +1,32 @@
-import { prisma } from './prisma'
-import bcrypt from 'bcrypt'
+import { prisma } from './prisma';
+import bcrypt from 'bcrypt';
 
 export const login = async (userLogin: { email: string; password: string }) => {
   try {
-    const user = await prisma.user.findUnique({
-      where: {
-        email: userLogin.email,
-      },
-    })
+    const user = await prisma.user.findUnique({ where: { email: userLogin.email } });
 
     const userData = {
       email: user?.email,
       username: user?.username,
       password: user?.password,
-    }
+    };
 
     if (user) {
-      return userData
+      return userData;
     } else {
-      return null
+      return null;
     }
   } catch (error) {
-    return null
+    return null;
   }
-}
+};
 
 export const register = async (userData: { username: string; email: string; password: string }) => {
-  const q = await prisma.user.findUnique({
-    where: {
-      email: userData.email,
-    },
-  })
+  const q = await prisma.user.findUnique({ where: { email: userData.email } });
   if (q) {
-    return { status: false, statusCode: 400, message: 'email sudah ada' }
+    return { status: false, statusCode: 400, message: 'email sudah ada' };
   } else {
-    userData.password = await bcrypt.hash(userData.password, 5)
+    userData.password = await bcrypt.hash(userData.password, 5);
     try {
       const user = await prisma.user.create({
         data: {
@@ -42,13 +34,13 @@ export const register = async (userData: { username: string; email: string; pass
           email: userData.email,
           password: userData.password,
         },
-      })
-      return { status: true, statusCode: 200, message: 'success register', user }
+      });
+      return { status: true, statusCode: 200, message: 'success register', user };
     } catch (error) {
-      return { status: false, statusCode: 400, message: 'gagal register' }
+      return { status: false, statusCode: 400, message: 'gagal register' };
     }
   }
-}
+};
 
 export const loginWithGoogle = async (
   userData: { username: string; email: string; image: string },
@@ -58,31 +50,25 @@ export const loginWithGoogle = async (
     where: {
       email: userData.email,
     },
-  })
+  });
+
   if (q) {
     await prisma.user
-      .update({
-        where: {
-          email: userData.email,
-        },
-        data: userData,
-      })
+      .update({ where: { email: userData.email }, data: userData })
       .then(() => {
-        callback({ status: true, message: 'login google berhasil', data: userData })
+        callback({ status: true, message: 'login google berhasil', data: userData });
       })
       .catch((error) => {
-        callback({ status: false, message: error })
-      })
+        callback({ status: false, message: error });
+      });
   } else {
     await prisma.user
-      .create({
-        data: userData,
-      })
+      .create({ data: userData })
       .then(() => {
-        callback({ status: true, message: 'login google berhasil', data: userData })
+        callback({ status: true, message: 'login google berhasil', data: userData });
       })
       .catch((error) => {
-        callback({ status: false, message: error })
-      })
+        callback({ status: false, message: error });
+      });
   }
-}
+};

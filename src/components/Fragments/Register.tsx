@@ -1,17 +1,18 @@
-'use client'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+'use client';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 const Register = () => {
-  const [message, setMessage] = useState('')
-  const [loading, setLoading] = useState(false)
-  const { push } = useRouter()
+  const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+  const { push } = useRouter();
 
   const handleSubmitRegister = async (e: any) => {
-    e.preventDefault()
-    setLoading(true)
-    setMessage('')
+    e.preventDefault();
+    setLoading(true);
+    setMessage('');
+
     const response = await fetch('/api/auth/register', {
       method: 'POST',
       body: JSON.stringify({
@@ -19,16 +20,17 @@ const Register = () => {
         email: e.target.email.value,
         password: e.target.password.value,
       }),
-    })
+    });
+
     if (response.status === 200) {
-      e.target.reset()
-      setLoading(false)
-      push('/login')
+      e.target.reset();
+      setLoading(false);
+      push('/login');
     } else {
-      setLoading(false)
-      setMessage('*email sudah ada')
+      setLoading(false);
+      setMessage('*email sudah ada');
     }
-  }
+  };
   return (
     <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-sm">
       <p className="text-red-secondary">{message}</p>
@@ -71,10 +73,10 @@ const Register = () => {
               Password
             </label>
             {/* <div className="text-sm">
-                  <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                    Forgot password?
-                  </a>
-                </div> */}
+                                <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                                    Forgot password?
+                                </a>
+                            </div> */}
           </div>
           <div className="mt-2">
             <input
@@ -108,7 +110,7 @@ const Register = () => {
         </Link>
       </p>
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
