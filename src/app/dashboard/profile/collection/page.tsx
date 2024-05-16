@@ -41,6 +41,7 @@ const CollectionsPage = async () => {
                 </div>
                 <div>
                   <h1 className="line-clamp-1 text-sm text-black-gray mt-1">{collect?.anime_title}</h1>
+
                   <ButtonDeleteAnimeCollection anime_id={collect.id} />
                 </div>
               </div>
