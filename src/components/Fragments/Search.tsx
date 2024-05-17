@@ -1,8 +1,9 @@
 'use client';
 
-import useFetch from '@/hooks/useFetch';
+import { getDataResponse } from '@/utils/api';
 import CardAnime from '../CardAnime';
 import CardManga from '../CardManga';
+import useFetch from '@/hooks/useFetch';
 import LoadingSpinner from '../Loading/LoadingSpinner';
 
 interface IPropsSearch {
@@ -12,12 +13,13 @@ interface IPropsSearch {
 
 export default function Search({ searchQuery, searchType }: IPropsSearch) {
   const decodedQuery = decodeURI(searchQuery);
+  // const data = await getDataResponse(`/${searchType}?q=${decodedQuery}`);
   const { data, loading }: any = useFetch(`/${searchType}?q=${decodedQuery}`);
 
   if (data?.data?.length === 0) return <p className="text-red-500">Sorry, Results not found!</p>;
 
   return (
-    <div>
+    <>
       {loading ? (
         <div className="w-full min-h-screen flex justify-center items-center">
           <LoadingSpinner />
@@ -40,6 +42,6 @@ export default function Search({ searchQuery, searchType }: IPropsSearch) {
           </div>
         </>
       )}
-    </div>
+    </>
   );
 }

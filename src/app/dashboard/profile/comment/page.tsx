@@ -42,7 +42,7 @@ const CommentPage = async () => {
           <div className="flex gap-2 flex-wrap w-full">
             {mangaComments.map((comment) => (
               <Link
-                href={`/anime/detail/${comment.manga_mal_id}`}
+                href={`/manga/detail/${comment.manga_mal_id}`}
                 key={comment.id}
                 className="w-fit p-4 bg-[#f4f4f4] roundedd-sm"
               >

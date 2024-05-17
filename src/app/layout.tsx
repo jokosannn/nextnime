@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
-import { Gabarito } from 'next/font/google';
 import './globals.css';
 import AuthProvider from '@/components/AuthProvider';
 import Header from '@/components/Navbar/Header';
-
-const gabarito = Gabarito({ subsets: ['latin'] });
+import ProgresBarTop from '@/components/ProgresBarTop';
+import { gabarito } from '@/libs/fonts';
 
 export const metadata: Metadata = {
   title: 'NextNime',
@@ -14,10 +13,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={gabarito.className}>
+      <body className={`${gabarito.className} antialiased`}>
         <AuthProvider>
           <Header />
-          {children}
+          <ProgresBarTop>{children}</ProgresBarTop>
         </AuthProvider>
       </body>
     </html>

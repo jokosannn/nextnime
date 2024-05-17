@@ -58,7 +58,7 @@ const CollectionsPage = async () => {
             {mangaCollections?.map((collect) => (
               <div key={collect.id} className="w-full h-full">
                 <div className="relative w-full aspect-[1/1.5] overflow-hidden rounded-md cursor-pointer">
-                  <Link href={`/anime/detail/${collect?.manga_mal_id}`}>
+                  <Link href={`/manga/detail/${collect?.manga_mal_id}`}>
                     <Image
                       src={collect.manga_image ? collect.manga_image : img.Poster}
                       width={500}
