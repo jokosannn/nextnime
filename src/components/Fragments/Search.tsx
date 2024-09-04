@@ -21,9 +21,7 @@ export default function Search({ searchQuery, searchType }: IPropsSearch) {
   return (
     <>
       {loading ? (
-        <div className="w-full min-h-screen flex justify-center items-center">
           <LoadingSpinner />
-        </div>
       ) : (
         <>
           <div className="flex justify-between items-center mb-4">

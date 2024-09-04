@@ -4,6 +4,7 @@ import AuthProvider from '@/components/AuthProvider';
 import Header from '@/components/Navbar/Header';
 import ProgresBarTop from '@/components/ProgresBarTop';
 import { gabarito } from '@/libs/fonts';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'NextNime',
@@ -14,10 +15,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={`${gabarito.className} antialiased`}>
-        <AuthProvider>
-          <Header />
-          <ProgresBarTop>{children}</ProgresBarTop>
-        </AuthProvider>
+        <Suspense fallback={<p>Loading...</p>}>
+          <AuthProvider>
+            <Header />
+            <ProgresBarTop>{children}</ProgresBarTop>
+          </AuthProvider>
+        </Suspense>
       </body>
     </html>
   );

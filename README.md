@@ -1,44 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1>Nextnime</h1>
 
-## Getting Started
+<p>This project is a website designed to showcase detailed information about various anime, manga, including descriptions, genres, ratings, chapters and episodes. Users can search for their favorite anime and manga, view detailed information, and save them to a personalized watchlist.</p>
 
-First, run the development server:
+![Showcase Banner](public/screenshot/ss-nextnime-01.png)
+![Showcase Banner](public/screenshot/ss-nextnime-02.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+<h2>Features</h2>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<ul>
+	<li><strong>Discover:</strong> Find various anime manga.</li>
+	<li><strong>Collection:</strong> Users can save their favorite anime and manga.z</li>
+	<li><strong>Comment:</strong> There is a comment feature.</li>
+	<li><strong>Search:</strong> Easily find anime or manga using our intuitive search feature.</li>
+  	<li><strong>Authentication:</strong> Google OAuth and credential</li>
+</ul>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<h2>Technical Stack</h2>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+<h3>Fullstack</h3>
 
-<<<<<<< HEAD
-<a href="https://nextnime.vercel.app" target="_blank"> NextNime - View Demo Website Here</a>
+<ul>
+	<li><strong>Language:</strong> TypeScript</li>
+	<li><strong>Framework:</strong> Nest.js</li>
+	<li><strong>ORM:</strong> Prisma</li>
+	<li><strong>Database:</strong> Supabase PostgreSQL</li>
+	<li><strong>Stayling:</strong> Tailwind - ShadcnUI</li>
+</ul>
+
+<h2>Demo Website</h2>
+
+<a href="https://nextnime.vercel.app" target="_blank">View Demo Website Here</a>
 
 ## Api
 
 <a href="https://jikan.moe" target="_blank">Jikan API - UNOFFICIAL MYANIMELIST API</a>
-=======
-## Learn More
->>>>>>> reset-update
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
