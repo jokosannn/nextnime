@@ -21,7 +21,7 @@
 
 <ul>
 	<li><strong>Language:</strong> TypeScript</li>
-	<li><strong>Framework:</strong> Nest.js</li>
+	<li><strong>Framework:</strong> Next.js</li>
 	<li><strong>ORM:</strong> Prisma</li>
 	<li><strong>Database:</strong> Supabase PostgreSQL</li>
 	<li><strong>Stayling:</strong> Tailwind - ShadcnUI</li>
